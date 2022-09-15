@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.example.foodorderingapp.UserDBSchema.UserTable;
 
 import java.util.ArrayList;
@@ -39,5 +41,33 @@ public class UserDBModel {
         }
 
         return userList;
+    }
+
+    public boolean checkUsername (String username)
+    {
+        Log.i("UserDBModel", username);
+
+        boolean exist = false;
+        Cursor cursor = db.rawQuery("select * from " + UserTable.NAME + " where " + UserTable.Cols.USERNAME + " = ? ", new String[] {username});
+
+        if(cursor.getCount() > 0)
+        {
+            exist = true;
+        }
+
+        return exist;
+    }
+
+    public boolean checkUsernamePassword (String username, String password)
+    {
+        boolean exist = false;
+        Cursor cursor = db.rawQuery("select * from " + UserTable.NAME + " where " + UserTable.Cols.USERNAME + " = ? ", new String[] {username, password});
+
+        if(cursor.getCount() > 0)
+        {
+            exist = true;
+        }
+
+        return exist;
     }
 }

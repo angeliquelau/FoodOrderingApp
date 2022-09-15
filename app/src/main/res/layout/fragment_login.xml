@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/peach"
-    tools:context=".UserFragment">
+    tools:context=".RegisterFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,17 +14,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <TextView
-            android:id="@+id/welcomeText"
+            android:id="@+id/signIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Sign In"
             android:layout_marginLeft="7dp"
-            android:layout_marginTop="96dp"
             android:layout_marginRight="7dp"
             android:gravity="center"
-            android:text="Hi, "
             android:textColor="@color/black"
             android:textSize="50sp"
             android:textStyle="bold"
@@ -32,34 +31,54 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/userDisplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/username2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="50dp"
-            android:text="User"
-            android:textColor="@color/black"
-            android:textSize="60sp"
-            android:textStyle="bold"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/text_background"
+            android:hint="Username"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/chinese_silver"
+            android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
+            app:layout_constraintTop_toBottomOf="@+id/signIn"
+            app:layout_goneMarginBottom="30dp" />
+
+        <EditText
+            android:id="@+id/password2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/text_background"
+            android:hint="Password"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/chinese_silver"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username2"
+            app:layout_goneMarginBottom="30dp" />
+
 
         <Button
-            android:id="@+id/logoutButton"
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="284dp"
+            android:layout_marginTop="50dp"
             android:backgroundTint="@color/light_white"
-            android:text="Log out"
+            android:text="Login"
             android:textColor="@color/black"
-            android:textSize="25dp"
             android:textStyle="bold"
+            android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
-
+            app:layout_constraintTop_toBottomOf="@+id/password2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
