@@ -2,6 +2,7 @@ package com.example.foodorderingapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -19,6 +20,8 @@ public class RegisterFragment extends Fragment {
     EditText username, email, password;
     Button registerButton, haveAccButton;
     UserDBModel userModel;
+    String userInput, emailInput, passwordInput;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,13 +36,13 @@ public class RegisterFragment extends Fragment {
         userModel = new UserDBModel();
         userModel.load(getActivity());
 
+        userInput = username.getText().toString();
+        emailInput = email.getText().toString();
+        passwordInput = password.getText().toString();
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String userInput = username.getText().toString();
-                String emailInput = email.getText().toString();
-                String passwordInput = password.getText().toString();
 
                 if(TextUtils.isEmpty(userInput) || TextUtils.isEmpty(emailInput) || TextUtils.isEmpty(passwordInput))
                 {
@@ -73,10 +76,7 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-
         return v;
-
-
     }
 
 
