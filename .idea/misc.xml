@@ -4,15 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Angelique/OneDrive/Documents/curtin/Y3S1/MAD/assignment/FoodOrderingApp/app/src/main/res/layout/activity_main.xml" value="0.1490036231884058" />
+        <entry key="app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.365" />
         <entry key="app/src/main/res/drawable/ic_baseline_restaurant_menu_24.xml" value="0.169" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.365" />
+        <entry key="app/src/main/res/drawable/text_background.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.2033514492753623" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.3958333333333333" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.3958333333333333" />
         <entry key="app/src/main/res/layout/fragment_order.xml" value="0.3958333333333333" />
         <entry key="app/src/main/res/layout/fragment_recycler.xml" value="0.5192708333333333" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.3958333333333333" />
+        <entry key="app/src/main/res/layout/fragment_testing.xml" value="0.5192708333333333" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.5" />
         <entry key="app/src/main/res/menu/bottom_nav_bar.xml" value="0.22" />
       </map>
     </option>
