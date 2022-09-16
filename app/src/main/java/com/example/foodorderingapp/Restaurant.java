@@ -5,11 +5,11 @@ public class Restaurant {
     public String resImage;
     public String resFoodName;
     public String resFoodImage;
-    public int resFoodPrice;
+    public double resFoodPrice;
     public String resFoodDesc;
 
     //constructor
-    public Restaurant(String resName, String resImage, String resFoodName, String resFoodImage, int resFoodPrice, String resFoodDesc)
+    public Restaurant(String resName, String resImage, String resFoodName, String resFoodImage, double resFoodPrice, String resFoodDesc)
     {
         this.resName = resName;
         this.resImage = resImage;
@@ -17,6 +17,18 @@ public class Restaurant {
         this.resFoodImage = resFoodImage;
         this.resFoodPrice = resFoodPrice;
         this.resFoodDesc = resFoodDesc;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "resName='" + resName + '\'' +
+                ", resImage='" + resImage + '\'' +
+                ", resFoodName='" + resFoodName + '\'' +
+                ", resFoodImage='" + resFoodImage + '\'' +
+                ", resFoodPrice=" + resFoodPrice +
+                ", resFoodDesc='" + resFoodDesc + '\'' +
+                '}';
     }
 
     //setters and getters
@@ -32,8 +44,8 @@ public class Restaurant {
     public String getResFoodImage() { return resFoodImage; }
     public void setResFoodImage(String resFoodImage) { this.resFoodImage = resFoodImage; }
 
-    public int getResFoodPrice() { return resFoodPrice; }
-    public void setResFoodPrice(int resFoodPrice) { this.resFoodPrice = resFoodPrice; }
+    public double getResFoodPrice() { return resFoodPrice; }
+    public void setResFoodPrice(double resFoodPrice) { this.resFoodPrice = resFoodPrice; }
 
     public String getResFoodDesc() { return resFoodDesc; }
     public void setResFoodDesc(String resFoodDesc) { this.resFoodDesc = resFoodDesc; }

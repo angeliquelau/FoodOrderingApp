@@ -36,13 +36,13 @@ public class RegisterFragment extends Fragment {
         userModel = new UserDBModel();
         userModel.load(getActivity());
 
-        userInput = username.getText().toString();
-        emailInput = email.getText().toString();
-        passwordInput = password.getText().toString();
-
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                userInput = username.getText().toString();
+                emailInput = email.getText().toString();
+                passwordInput = password.getText().toString();
 
                 if(TextUtils.isEmpty(userInput) || TextUtils.isEmpty(emailInput) || TextUtils.isEmpty(passwordInput))
                 {
@@ -51,6 +51,7 @@ public class RegisterFragment extends Fragment {
                 }
                 else
                 {
+
                     //there is not user in the database
                     if(!userModel.checkUsername(userInput))
                     {

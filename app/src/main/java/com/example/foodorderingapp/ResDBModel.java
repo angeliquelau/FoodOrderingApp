@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.foodorderingapp.ResDBSchema.RestaurantTable;
 
@@ -24,6 +25,7 @@ public class ResDBModel {
         cv.put(RestaurantTable.Cols.R_FOODIMAGE, res.getResFoodImage());
         cv.put(RestaurantTable.Cols.R_FOODPRICE, res.getResFoodPrice());
         cv.put(RestaurantTable.Cols.R_FOODDESC, res.getResFoodDesc());
+
         db.insert(RestaurantTable.NAME, null, cv); //add information into database
     }
 
@@ -44,5 +46,18 @@ public class ResDBModel {
             cursor.close();
         }
         return resList;
+    }
+
+    public boolean checkDataEntry(String restaurant)
+    {
+        boolean exist = false;
+        Cursor cursor = db.rawQuery("select * from " + ResDBSchema.RestaurantTable.NAME + " where " + RestaurantTable.Cols.R_NAME + " = ? ", new String[] {restaurant});
+
+        if(cursor.getCount() > 0)
+        {
+            exist = true;
+        }
+
+        return exist;
     }
 }
