@@ -30,7 +30,8 @@ public class LoginFragment extends Fragment {
         login = v. findViewById(R.id.loginButton);
         userModel = new UserDBModel();
         userModel.load(getActivity());
-
+        Bundle bundle = this.getArguments();
+        CommonFragments data =  bundle.getParcelable("frag");;
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,17 +51,22 @@ public class LoginFragment extends Fragment {
                     if(!userModel.checkUsername(userInput))
                     {
                        Toast.makeText(getActivity(), "Invalid Account", Toast.LENGTH_SHORT).show();
+                       username.getText().clear();
+                       password.getText().clear();
                     }
                     else //user exist
                     {
+                        username.getText().clear();
+                        password.getText().clear();
+                        
                         Toast.makeText(getActivity(), "Welcome " + userInput, Toast.LENGTH_SHORT).show();
-                        Bundle bundle = new Bundle();
                         bundle.putString("username", userInput);
-                        UserFragment uf = new UserFragment();
+                        UserFragment uf = data.getUserFragment();
                         uf.setArguments(bundle);
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.frameLayout, uf);
                         ft.commit();
+                        data.setLogin(true);
 
                     }
                 }

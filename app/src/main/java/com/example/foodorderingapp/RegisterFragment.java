@@ -35,6 +35,8 @@ public class RegisterFragment extends Fragment {
         haveAccButton = v.findViewById(R.id.haveAccButton);
         userModel = new UserDBModel();
         userModel.load(getActivity());
+        Bundle bundle = this.getArguments();
+        CommonFragments data =  bundle.getParcelable("frag");
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,10 +60,16 @@ public class RegisterFragment extends Fragment {
                         User user = new User(userInput, emailInput, passwordInput);
                         userModel.addUser(user);
                         Toast.makeText(getActivity(), "Registered successfully", Toast.LENGTH_SHORT).show();
+                        username.getText().clear();
+                        email.getText().clear();
+                        password.getText().clear();
                     }
                     else //user exist
                     {
                         Toast.makeText(getActivity(), "User existed", Toast.LENGTH_SHORT).show();
+                        username.getText().clear();
+                        email.getText().clear();
+                        password.getText().clear();
 
                     }
                 }
@@ -71,8 +79,14 @@ public class RegisterFragment extends Fragment {
         haveAccButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                username.getText().clear();
+                email.getText().clear();
+                password.getText().clear();
+                LoginFragment lf = data.getLoginFragment();
+                lf.setArguments(bundle);
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frameLayout, new LoginFragment());
+                ft.replace(R.id.frameLayout, lf);
                 ft.commit();
             }
         });

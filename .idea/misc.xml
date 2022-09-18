@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.3958333333333333" />
         <entry key="app/src/main/res/layout/fragment_order.xml" value="0.3958333333333333" />
         <entry key="app/src/main/res/layout/fragment_recycler.xml" value="0.5192708333333333" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_testing.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.5" />
         <entry key="app/src/main/res/menu/bottom_nav_bar.xml" value="0.22" />
