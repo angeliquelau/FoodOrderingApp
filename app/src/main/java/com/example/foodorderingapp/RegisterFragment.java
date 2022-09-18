@@ -36,8 +36,6 @@ public class RegisterFragment extends Fragment {
         userModel = new UserDBModel();
         userModel.load(getActivity());
 
-
-
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +51,7 @@ public class RegisterFragment extends Fragment {
                 }
                 else
                 {
+
                     //there is not user in the database
                     if(!userModel.checkUsername(userInput))
                     {
