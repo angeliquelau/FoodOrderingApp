@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
 public class UserFragment extends Fragment {
 
+    EditText username, email, password;
     String name;
     TextView outputName;
     Button logout;
@@ -26,18 +28,22 @@ public class UserFragment extends Fragment {
 
         outputName = v.findViewById(R.id.userDisplay);
         logout = v.findViewById(R.id.logoutButton);
+
         Bundle bundle = this.getArguments();
         name = bundle.getString("username");
         Log.i("User", name);
         outputName.setText(name);
 
+        CommonFragments data = bundle.getParcelable("frag");
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frameLayout, new RegisterFragment());
+                ft.replace(R.id.frameLayout, data.getRegisterFragment());
                 ft.commit();
+                data.setLogin(false);
+
             }
         });
 

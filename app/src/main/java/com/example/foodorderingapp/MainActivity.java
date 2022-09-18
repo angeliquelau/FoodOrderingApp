@@ -14,41 +14,68 @@ import com.example.foodorderingapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    //initialize fragments and boolean login
+    MenuFragment mf = new MenuFragment();
+    RegisterFragment rf = new RegisterFragment();
+    LoginFragment lf = new LoginFragment();
+    UserFragment uf = new UserFragment();
+    OrderFragment of = new OrderFragment();
+    CartFragment cf = new CartFragment();
+    boolean login;
+
     ActivityMainBinding binding;
     ResDBModel resDBModel = new ResDBModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         resDBModel.load(getApplicationContext());
         fillRestaurantData();
 
+        CommonFragments data = new CommonFragments(mf, rf, lf, uf, of, cf, login);
         if(savedInstanceState == null) {
-            replaceFragment(new MenuFragment());
+            replaceFragment(data.getMenuFragment());
         }
 
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("frag", data);
         binding.bottomNavigationView.setOnItemSelectedListener(item ->
         {
             switch(item.getItemId()){
                 case R.id.menu:
-                    replaceFragment(new MenuFragment());
+
+                    replaceFragment(mf);
+                    mf.setArguments(bundle);
                     break;
 
                 case R.id.cart:
-                    replaceFragment(new CartFragment());
+
+                    replaceFragment(cf);
+                    cf.setArguments(bundle);
+
                     break;
 
                 case R.id.orderHistory:
-                    replaceFragment(new OrderFragment());
+
+                    replaceFragment(of);
+                    of.setArguments(bundle);
+
                     break;
 
                 case R.id.user:
-                    replaceFragment(new RegisterFragment());
+
+                    if(!data.login) {
+                        replaceFragment(rf);
+                        rf.setArguments(bundle);
+                    }
+                    else
+                    {
+                        replaceFragment(uf);
+                        uf.setArguments(bundle);
+                    }
+
                     break;
             }
             return true;
