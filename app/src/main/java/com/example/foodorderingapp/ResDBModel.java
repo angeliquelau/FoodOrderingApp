@@ -37,9 +37,9 @@ public class ResDBModel {
         try{
             cursor.moveToFirst(); //move cursor to the first data in the database
             //while not at the end of the database, loop to add the data into the array list
-            while(!resDBCursor.isAfterLast()){
+            while(!cursor.isAfterLast()){
                 resList.add(resDBCursor.getRestaurant());
-                resDBCursor.moveToNext();
+                cursor.moveToNext();
             }
         }
         finally {
@@ -57,6 +57,8 @@ public class ResDBModel {
         {
             exist = true;
         }
+
+        cursor.close();
 
         return exist;
     }

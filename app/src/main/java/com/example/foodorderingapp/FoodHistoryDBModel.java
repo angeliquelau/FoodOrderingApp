@@ -29,9 +29,9 @@ public class FoodHistoryDBModel {
         try{
             cursor.moveToFirst(); //move cursor to the first data in the database
             //while not at the end of the database, loop to add the data into the array list
-            while(!fhDBCursor.isAfterLast()){
+            while(!cursor.isAfterLast()){
                 fhList.add(fhDBCursor.getFoodHistory());
-                fhDBCursor.moveToNext();
+                cursor.moveToNext();
             }
         }
         finally {

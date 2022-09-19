@@ -31,9 +31,9 @@ public class UserDBModel {
         try{
             cursor.moveToFirst(); //move cursor to the first data in the database
             //while not at the end of the database, loop to add the data into the array list
-            while(!userDBCursor.isAfterLast()){
+            while(!cursor.isAfterLast()){
                 userList.add(userDBCursor.getUser());
-                userDBCursor.moveToNext();
+                cursor.moveToNext();
             }
         }
         finally{
@@ -55,6 +55,8 @@ public class UserDBModel {
             exist = true;
         }
 
+        cursor.close();
+
         return exist;
     }
 
@@ -68,6 +70,7 @@ public class UserDBModel {
             exist = true;
         }
 
+        cursor.close();
         return exist;
     }
 }
