@@ -22,6 +22,17 @@ public class CartDBModel {
         db.insert(CartTable.NAME, null, cv); //add food item to cart database
     }
 
+    public void updateCart(Cart c){
+        ContentValues cv = new ContentValues();
+        cv.put(CartTable.Cols.C_USERNAME, c.getUsername());
+        cv.put(CartTable.Cols.C_FOODIMAGE, c.getFoodImage());
+        cv.put(CartTable.Cols.C_NAME, c.getFoodName());
+        cv.put(CartTable.Cols.C_PRICE, c.getFoodPrice());
+        cv.put(CartTable.Cols.C_QUANTITY, c.getQuantity());
+        String[] whereValue = { String.valueOf(c.getFoodName()) }; //get the name of the food that the user want to edit
+        db.update(CartTable.NAME, cv, CartTable.Cols.C_NAME + " = ? ", whereValue); //update food item that is in cart database
+    }
+
     public void deleteCartItem(Cart cart)
     {
         //get the food name to be deleted
