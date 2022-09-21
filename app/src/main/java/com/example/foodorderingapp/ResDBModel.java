@@ -29,17 +29,22 @@ public class ResDBModel {
         db.insert(RestaurantTable.NAME, null, cv); //add information into database
     }
 
+    /*This return method is not efficient, use a static ArrayList<String> restaurant,
+    ArrayList<String> food name would be better
+    https://www.youtube.com/watch?v=VQKq9RHMS_0&t=209s
+    */
+
     public ArrayList<Restaurant> getAlLRestaurant(){
         ArrayList<Restaurant> resList = new ArrayList<>();
         Cursor cursor = db.query(RestaurantTable.NAME, null, null, null, null, null, null);
         ResDBCursor resDBCursor = new ResDBCursor(cursor);
 
         try{
-            cursor.moveToFirst(); //move cursor to the first data in the database
+            resDBCursor.moveToFirst(); //move cursor to the first data in the database
             //while not at the end of the database, loop to add the data into the array list
-            while(!cursor.isAfterLast()){
+            while(!resDBCursor.isAfterLast()){
                 resList.add(resDBCursor.getRestaurant());
-                cursor.moveToNext();
+                resDBCursor.moveToNext();
             }
         }
         finally {

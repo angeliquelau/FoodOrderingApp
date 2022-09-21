@@ -38,9 +38,9 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
 
                 String userInput = username.getText().toString();
-                String emailInput = password.getText().toString();
+                String passwordInput = password.getText().toString();
 
-                if(TextUtils.isEmpty(userInput) || TextUtils.isEmpty(emailInput))
+                if(TextUtils.isEmpty(userInput) || TextUtils.isEmpty(passwordInput))
                 {
                     Toast.makeText(getActivity(), "Inputs cannot be blank", Toast.LENGTH_SHORT).show();
 
@@ -58,15 +58,23 @@ public class LoginFragment extends Fragment {
                     {
                         username.getText().clear();
                         password.getText().clear();
-                        
-                        Toast.makeText(getActivity(), "Welcome " + userInput, Toast.LENGTH_SHORT).show();
-                        bundle.putString("username", userInput);
-                        UserFragment uf = data.getUserFragment();
-                        uf.setArguments(bundle);
-                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.frameLayout, uf);
-                        ft.commit();
-                        data.setLogin(true);
+
+                        //if username and password is correct
+                        if(userModel.checkUsernamePassword(userInput, passwordInput)) {
+
+                            Toast.makeText(getActivity(), "Welcome " + userInput, Toast.LENGTH_SHORT).show();
+                            bundle.putString("username", userInput);
+                            UserFragment uf = data.getUserFragment();
+                            uf.setArguments(bundle);
+                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                            ft.replace(R.id.frameLayout, uf);
+                            ft.commit();
+                            data.setLogin(true);
+                        }
+                        else
+                        {
+                            Toast.makeText(getActivity(), "Wrong password for " + userInput, Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 }

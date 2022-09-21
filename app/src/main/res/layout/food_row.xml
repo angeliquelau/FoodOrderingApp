@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@color/peach"
+    android:id="@+id/foodLayout">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardElevation="8dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/foodImage"
+                android:layout_width="135dp"
+                android:layout_height="135dp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.188"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/foodName"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="4dp"
+                android:text="Crispy Tender Combo A"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/foodImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/foodDesc"
+                android:layout_width="226dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="10dp"
+                android:text="FoodName FoodName "
+                android:textSize="15dp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/foodImage"
+                app:layout_constraintTop_toBottomOf="@+id/foodName"
+                app:layout_constraintVertical_bias="0.175" />
+
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="44dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:text="+"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/foodDesc" />
+
+            <Button
+                android:id="@+id/minusButton"
+                android:layout_width="44dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="172dp"
+                android:layout_marginTop="32dp"
+                android:text="-"
+                app:layout_constraintEnd_toStartOf="@+id/quantityText"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/foodDesc" />
+
+            <TextView
+                android:id="@+id/quantityText"
+                android:layout_width="69dp"
+                android:layout_height="33dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="24dp"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/addButton"
+                app:layout_constraintTop_toBottomOf="@+id/foodDesc" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

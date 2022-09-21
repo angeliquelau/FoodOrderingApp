@@ -1,21 +1,41 @@
 package com.example.foodorderingapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+<<<<<<< Updated upstream
 import android.view.Menu;
+=======
+import android.util.Log;
+>>>>>>> Stashed changes
 
 import com.example.foodorderingapp.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
 
     //initialize fragments and boolean login
-    MenuFragment mf = new MenuFragment();
+    CommonRestaurant cr;
+    CommonData cd;
+
+    ArrayList<Restaurant> kfc = new ArrayList<>();
+    ArrayList<Restaurant> mcd = new ArrayList<>();
+    ArrayList<Restaurant> pizzahut = new ArrayList<>();
+    ArrayList<Restaurant> subway = new ArrayList<>();
+    ArrayList<Restaurant> nando = new ArrayList<>();
+    ArrayList<Restaurant> sushiking = new ArrayList<>();
+    ArrayList<Restaurant> sugarbun = new ArrayList<>();
+    ArrayList<Restaurant> marrybrown = new ArrayList<>();
+    ArrayList<Restaurant> sushiMentai = new ArrayList<>();
+    ArrayList<Restaurant> domino = new ArrayList<>();
+
+    SpecialMenuFragment mf = new SpecialMenuFragment();
+    RestaurantRecycler rr = new RestaurantRecycler();
     RegisterFragment rf = new RegisterFragment();
     LoginFragment lf = new LoginFragment();
     UserFragment uf = new UserFragment();
@@ -32,22 +52,36 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         resDBModel.load(getApplicationContext());
+<<<<<<< Updated upstream
         fillRestaurantData();
 
         CommonFragments data = new CommonFragments(mf, rf, lf, uf, of, cf, login);
-        if(savedInstanceState == null) {
-            replaceFragment(data.getMenuFragment());
-        }
-
+=======
+        //to get common restaurants
+        cr = fillRestaurantData(kfc, mcd, pizzahut, subway, nando, sushiking, sugarbun, marrybrown,
+                sushiMentai, domino);
+        cd = new CommonData(cr);
+        Log.d("On Create: ", "see restaurant data: " + resDBModel.getAlLRestaurant());
+        CommonFragments data = new CommonFragments(mf, rf, lf, uf, of, cf, login, cd);
         Bundle bundle = new Bundle();
         bundle.putParcelable("frag", data);
+
+        //if the app is open for the first time
+>>>>>>> Stashed changes
+        if(savedInstanceState == null) {
+            replaceFragment(data.getMenuFragment());
+            mf.setArguments(bundle);
+        }
+
+
         binding.bottomNavigationView.setOnItemSelectedListener(item ->
         {
             switch(item.getItemId()){
                 case R.id.menu:
 
-                    replaceFragment(mf);
-                    mf.setArguments(bundle);
+                    replaceFragment(rr);
+                    rr.setArguments(bundle);
+
                     break;
 
                 case R.id.cart:
@@ -95,37 +129,57 @@ public class MainActivity extends AppCompatActivity {
     * KFC:
     * logo: https://en.wikipedia.org/wiki/KFC
     * food menu: https://kfc.com.my/menu.html
+    *
     * Mcd:
     * logo: https://en.wikipedia.org/wiki/McDonald%27s
+<<<<<<< Updated upstream
     * food menu: https://www.mcdelivery.com.my/my/browse/menu.html, https://www.mcdonalds.com.my/menu
+=======
+    * food menu: https://www.mcdelivery.com.my/my/browse/menu.html, https://www.mcdonalds.com.my/menu,
+    *            https://www.change.org/p/mcdonald-s-malaysia-mcdonald-s-malaysia-to-bring-back-ayam-goreng-mcd-regular
+    *
+>>>>>>> Stashed changes
     * Pizza Hut:
     * logo: https://en.wikipedia.org/wiki/Pizza_Hut
     * food menu: https://www.pizzahut.com.my/order/pizzas
+    *
     * Subway:
     * logo: https://en.wikipedia.org/wiki/Subway_(restaurant)
     * food menu: https://www.subway.com/en-MY/MenuNutrition/Menu/Sandwiches
+    *
     * Nando's:
     * logo: https://en.wikipedia.org/wiki/Nando%27s
     * food menu: https://nandos.com.my/nandos-menu/?nandos_delivery=yes
+    *
     * sushi king:
     * logo: https://sushi-king.com/
     * food menu: https://sushi-king.com/
+    *
     * sugarbun:
     * logo: http://www.sugarbun.com/
     * food menu: http://www.sugarbun.com/menu
+    *
     * marrybrown:
     * logo: https://en.wikipedia.org/wiki/Marrybrown
     * food menu: https://food.grab.com/my/en/restaurant/marrybrown-q-avenue-delivery/1-CZKFHBAZRREXCN
+    *
     * sushi mentai:
     * logo: https://sushi-mentai.com/EN/home
     * food menu: https://sushi-mentai.com/EN/our-menu
+    *
     * domino's pizza:
     * logo: https://en.wikipedia.org/wiki/Domino%27s_Pizza
     * food menu: https://www.dominos.com.my/pages/order/menu#!/menu/category/viewAll/
     * */
 
     /*if want to get the image of the restaurant, get the image from the first data*/
-    private void fillRestaurantData() {
+    private CommonRestaurant fillRestaurantData(ArrayList<Restaurant> kfc, ArrayList<Restaurant> mcd,
+                                                ArrayList<Restaurant> pizzahut, ArrayList<Restaurant> subway,
+                                                ArrayList<Restaurant> nando, ArrayList<Restaurant> sushiking,
+                                                ArrayList<Restaurant> sugarbun, ArrayList<Restaurant> marrybrown,
+                                                ArrayList<Restaurant> sushiMentai, ArrayList<Restaurant> domino)
+    {
+
         //KFC
         Restaurant kfc1 = new Restaurant("KFC", "https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/220px-KFC_logo.svg.png",
                 "Snacker Box", "https://kfc.com.my/media/catalog/product/s/n/snacker-box_1.jpg?quality=80&bg-color=255%2C255%2C255&fit=cover&height=1200&width=960&auto=webp&format=pjpg",
@@ -163,6 +217,17 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(kfc8);
             resDBModel.addRestaurant(kfc9);
             resDBModel.addRestaurant(kfc10);
+
+            this.kfc.add(kfc1);
+            this.kfc.add(kfc2);
+            this.kfc.add(kfc3);
+            this.kfc.add(kfc4);
+            this.kfc.add(kfc5);
+            this.kfc.add(kfc6);
+            this.kfc.add(kfc7);
+            this.kfc.add(kfc8);
+            this.kfc.add(kfc9);
+            this.kfc.add(kfc10);
         }
 
         //McDonald's
@@ -200,6 +265,17 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(mcd8);
             resDBModel.addRestaurant(mcd9);
             resDBModel.addRestaurant(mcd10);
+
+            this.mcd.add(mcd1);
+            this.mcd.add(mcd2);
+            this.mcd.add(mcd3);
+            this.mcd.add(mcd4);
+            this.mcd.add(mcd5);
+            this.mcd.add(mcd6);
+            this.mcd.add(mcd7);
+            this.mcd.add(mcd8);
+            this.mcd.add(mcd9);
+            this.mcd.add(mcd10);
         }
 
         //pizza hut
@@ -237,6 +313,17 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(ph8);
             resDBModel.addRestaurant(ph9);
             resDBModel.addRestaurant(ph10);
+
+            this.pizzahut.add(ph1);
+            this.pizzahut.add(ph2);
+            this.pizzahut.add(ph3);
+            this.pizzahut.add(ph4);
+            this.pizzahut.add(ph5);
+            this.pizzahut.add(ph6);
+            this.pizzahut.add(ph7);
+            this.pizzahut.add(ph8);
+            this.pizzahut.add(ph9);
+            this.pizzahut.add(ph10);
         }
 
         //subway
@@ -274,6 +361,18 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(sb8);
             resDBModel.addRestaurant(sb9);
             resDBModel.addRestaurant(sb10);
+
+            this.subway.add(sb1);
+            this.subway.add(sb2);
+            this.subway.add(sb3);
+            this.subway.add(sb4);
+            this.subway.add(sb5);
+            this.subway.add(sb6);
+            this.subway.add(sb7);
+            this.subway.add(sb8);
+            this.subway.add(sb9);
+            this.subway.add(sb10);
+
         }
 
         //Nando's
@@ -311,6 +410,17 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(nandos8);
             resDBModel.addRestaurant(nandos9);
             resDBModel.addRestaurant(nandos10);
+
+            this.nando.add(nandos1);
+            this.nando.add(nandos2);
+            this.nando.add(nandos3);
+            this.nando.add(nandos4);
+            this.nando.add(nandos5);
+            this.nando.add(nandos6);
+            this.nando.add(nandos7);
+            this.nando.add(nandos8);
+            this.nando.add(nandos9);
+            this.nando.add(nandos10);
         }
 
         //Sushi King
@@ -348,6 +458,17 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(sk8);
             resDBModel.addRestaurant(sk9);
             resDBModel.addRestaurant(sk10);
+
+            this.sushiking.add(sk1);
+            this.sushiking.add(sk2);
+            this.sushiking.add(sk3);
+            this.sushiking.add(sk4);
+            this.sushiking.add(sk5);
+            this.sushiking.add(sk6);
+            this.sushiking.add(sk7);
+            this.sushiking.add(sk8);
+            this.sushiking.add(sk9);
+            this.sushiking.add(sk10);
         }
 
         //SugarBun
@@ -385,6 +506,17 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(sbun8);
             resDBModel.addRestaurant(sbun9);
             resDBModel.addRestaurant(sbun10);
+
+            this.sugarbun.add(sbun1);
+            this.sugarbun.add(sbun2);
+            this.sugarbun.add(sbun3);
+            this.sugarbun.add(sbun4);
+            this.sugarbun.add(sbun5);
+            this.sugarbun.add(sbun6);
+            this.sugarbun.add(sbun7);
+            this.sugarbun.add(sbun8);
+            this.sugarbun.add(sbun9);
+            this.sugarbun.add(sbun10);
         }
 
         //Marrybrown
@@ -422,6 +554,17 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(mb8);
             resDBModel.addRestaurant(mb9);
             resDBModel.addRestaurant(mb10);
+
+            this.marrybrown.add(mb1);
+            this.marrybrown.add(mb2);
+            this.marrybrown.add(mb3);
+            this.marrybrown.add(mb4);
+            this.marrybrown.add(mb5);
+            this.marrybrown.add(mb6);
+            this.marrybrown.add(mb7);
+            this.marrybrown.add(mb8);
+            this.marrybrown.add(mb9);
+            this.marrybrown.add(mb10);
         }
 
         //Sushi Mentai
@@ -459,6 +602,17 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(sm8);
             resDBModel.addRestaurant(sm9);
             resDBModel.addRestaurant(sm10);
+
+            this.sushiMentai.add(sm1);
+            this.sushiMentai.add(sm2);
+            this.sushiMentai.add(sm3);
+            this.sushiMentai.add(sm4);
+            this.sushiMentai.add(sm5);
+            this.sushiMentai.add(sm6);
+            this.sushiMentai.add(sm7);
+            this.sushiMentai.add(sm8);
+            this.sushiMentai.add(sm9);
+            this.sushiMentai.add(sm10);
         }
 
         //Domino's Pizza
@@ -496,6 +650,21 @@ public class MainActivity extends AppCompatActivity {
             resDBModel.addRestaurant(dm8);
             resDBModel.addRestaurant(dm9);
             resDBModel.addRestaurant(dm10);
+
+            this.domino.add(dm1);
+            this.domino.add(dm2);
+            this.domino.add(dm3);
+            this.domino.add(dm4);
+            this.domino.add(dm5);
+            this.domino.add(dm6);
+            this.domino.add(dm7);
+            this.domino.add(dm8);
+            this.domino.add(dm9);
+            this.domino.add(dm10);
         }
+
+        CommonRestaurant cr = new CommonRestaurant(this.kfc, this.mcd, this.pizzahut, this.subway, this.nando, this.sushiking, this.sugarbun, this.marrybrown, this.sushiMentai, this.domino);
+
+        return cr;
     }
 }
