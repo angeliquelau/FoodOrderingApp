@@ -23,6 +23,7 @@ public class UserDBModel {
         db.insert(UserTable.NAME, null, cv); // add user into database
     }
 
+
     public ArrayList<User> getAllUser() {
         ArrayList<User> userList = new ArrayList<>();
         Cursor cursor = db.query(UserTable.NAME, null, null, null, null, null, null);
@@ -63,7 +64,9 @@ public class UserDBModel {
     public boolean checkUsernamePassword (String username, String password)
     {
         boolean exist = false;
-        Cursor cursor = db.rawQuery("select * from " + UserTable.NAME + " where " + UserTable.Cols.USERNAME + " = ? ", new String[] {username, password});
+        Cursor cursor = db.rawQuery("select * from " + UserTable.NAME + " where " +
+                UserTable.Cols.USERNAME + " = ?" + " AND "
+                + UserTable.Cols.PASSWORD + " = ?", new String[] {username, password});
 
         if(cursor.getCount() > 0)
         {

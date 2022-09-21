@@ -20,14 +20,20 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.2033514492753623" />
+        <entry key="app/src/main/res/layout/food_row.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.3958333333333333" />
+        <entry key="app/src/main/res/layout/fragment_food.xml" value="0.3591485507246377" />
+        <entry key="app/src/main/res/layout/fragment_food_recycler.xml" value="0.41847826086956524" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_menu.xml" value="0.3958333333333333" />
         <entry key="app/src/main/res/layout/fragment_order.xml" value="0.3958333333333333" />
         <entry key="app/src/main/res/layout/fragment_recycler.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_restaurant.xml" value="0.3591485507246377" />
+        <entry key="app/src/main/res/layout/fragment_restaurant_recycler.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_testing.xml" value="0.5192708333333333" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/restaurant_row.xml" value="0.3902023315429688" />
         <entry key="app/src/main/res/menu/bottom_nav_bar.xml" value="0.22" />
       </map>
     </option>
