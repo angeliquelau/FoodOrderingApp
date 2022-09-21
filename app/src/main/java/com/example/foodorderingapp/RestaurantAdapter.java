@@ -1,6 +1,7 @@
 package com.example.foodorderingapp;
 
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,20 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.MyViewHolder> {
 
-    CommonData cd;
+    CommonData cd = new CommonData();
     ArrayList<Integer> restaurantImages;
     ArrayList<String> restaurantName;
-    public RestaurantAdapter(CommonData cd)
+    ResDBModel resDBModel;
+
+    public RestaurantAdapter(CommonFragments common)
     {
-        this.cd = cd;
-        restaurantImages = cd.resImg;
-        restaurantName = cd.kfcName;
+        resDBModel = common.resDBModel;
     }
 
     @NonNull
@@ -31,8 +33,12 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         //inflate the xml that u wanna show on fragment
         View view = layoutInflater.inflate(R.layout.restaurant_row,parent,false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
 
+        MyViewHolder myViewHolder = new MyViewHolder(view);
+        restaurantImages = cd.getResImg();
+        restaurantName = resDBModel.getResName();
+        String size = Integer.toString(restaurantName.size());
+        Log.d("Recycler", "Value = "  + size);
         return myViewHolder;
     }
 
@@ -46,7 +52,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
 
     @Override
     public int getItemCount() {
-        return restaurantImages.size();
+
+        return 10;
+
     }
 
 

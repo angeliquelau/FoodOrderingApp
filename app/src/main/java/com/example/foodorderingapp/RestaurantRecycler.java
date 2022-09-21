@@ -18,19 +18,22 @@ public class RestaurantRecycler extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Bundle bundle = this.getArguments();
         CommonFragments data = bundle.getParcelable("frag");
-        CommonData cd = data.getCommonData();
         View v = inflater.inflate(R.layout.fragment_restaurant_recycler, container, false);
         RecyclerView rv = v.findViewById(R.id.restaurantRecycler);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        RestaurantAdapter ra = new RestaurantAdapter(cd);
+        RestaurantAdapter ra = new RestaurantAdapter(data);
         rv.setAdapter(ra);
         return v;
     }
+/*
+    private void storeData()
+    {
+        res_name =
+    }*/
 }

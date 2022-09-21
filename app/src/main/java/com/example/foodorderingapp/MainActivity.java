@@ -16,12 +16,13 @@ import com.example.foodorderingapp.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     //initialize fragments and boolean login
-    MenuFragment mf = new MenuFragment();
+    SpecialMenuFragment smf = new SpecialMenuFragment();
     RegisterFragment rf = new RegisterFragment();
     LoginFragment lf = new LoginFragment();
     UserFragment uf = new UserFragment();
     OrderFragment of = new OrderFragment();
     CartFragment cf = new CartFragment();
+    RestaurantRecycler rr = new RestaurantRecycler();
     boolean login;
 
     ActivityMainBinding binding;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         resDBModel.load(getApplicationContext());
         fillRestaurantData();
         Log.d("On Create: ", "see restaurant data: " + resDBModel.getAlLRestaurant());
-        CommonFragments data = new CommonFragments(mf, rf, lf, uf, of, cf, login);
+        Log.d("see all", "Restaurant debug " + resDBModel.getResName());
+        CommonFragments data = new CommonFragments(smf, rf, lf, uf, of, cf, login, resDBModel);
         if(savedInstanceState == null) {
             replaceFragment(data.getMenuFragment());
         }
@@ -47,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
             switch(item.getItemId()){
                 case R.id.menu:
 
-                    replaceFragment(mf);
-                    mf.setArguments(bundle);
+                    replaceFragment(rr);
+                    rr.setArguments(bundle);
                     break;
 
                 case R.id.cart:

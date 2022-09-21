@@ -5,27 +5,27 @@ import android.os.Parcelable;
 
 public class CommonFragments implements Parcelable {
 
-    SpecialMenuFragment mf;
+    SpecialMenuFragment smf;
     RegisterFragment rf;
     LoginFragment lf;
     UserFragment uf;
     OrderFragment of;
     CartFragment cf;
     boolean login;
-    CommonData cd;
+    ResDBModel resDBModel;
 
-    public CommonFragments(SpecialMenuFragment mf, RegisterFragment rf, LoginFragment lf, UserFragment uf,
-                           OrderFragment of, CartFragment cf, boolean login, CommonData cd)
+    public CommonFragments(SpecialMenuFragment smf, RegisterFragment rf, LoginFragment lf, UserFragment uf,
+                           OrderFragment of, CartFragment cf, boolean login, ResDBModel resDBModel)
 
     {
-        this.mf = mf;
+        this.smf = smf;
         this.rf = rf;
         this.lf = lf;
         this.uf = uf;
         this.of = of;
         this.cf = cf;
         this.login = login;
-        this.cd = cd;
+        this.resDBModel = resDBModel;
     }
 
     protected CommonFragments(Parcel in) {
@@ -46,7 +46,7 @@ public class CommonFragments implements Parcelable {
 
     public SpecialMenuFragment getMenuFragment()
     {
-        return mf;
+        return smf;
     }
 
     public CartFragment getCartFragment()
@@ -71,7 +71,7 @@ public class CommonFragments implements Parcelable {
 
     public OrderFragment getOrderFragment(){return of; }
 
-    public CommonData getCommonData(){return cd;}
+    public ResDBModel getResDBModel(){return resDBModel;}
 
     public void setLogin(boolean status)
     {

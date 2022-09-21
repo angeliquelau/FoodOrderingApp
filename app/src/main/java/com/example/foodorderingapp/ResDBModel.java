@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.foodorderingapp.ResDBSchema.RestaurantTable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ResDBModel {
@@ -34,17 +35,40 @@ public class ResDBModel {
     https://www.youtube.com/watch?v=VQKq9RHMS_0&t=209s
     */
 
+    public ArrayList<String> getResName()
+    {
+        ArrayList<String> resName = new ArrayList<>();
+        //display unique restaurants name
+        Cursor cursor = db.rawQuery("select distinct "+ RestaurantTable.Cols.R_NAME + " from " + RestaurantTable.NAME,  null);
+        ResDBCursor resDBCursor = new ResDBCursor(cursor);
+
+        try{
+            cursor.moveToFirst(); //move cursor to the first data in the database
+            //while not at the end of the database, loop to add the data into the array list
+            while(!cursor.isAfterLast()){
+                resName.add(resDBCursor.getRestaurantName());
+                cursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+
+        return resName;
+
+    }
+
     public ArrayList<Restaurant> getAlLRestaurant(){
         ArrayList<Restaurant> resList = new ArrayList<>();
         Cursor cursor = db.query(RestaurantTable.NAME, null, null, null, null, null, null);
         ResDBCursor resDBCursor = new ResDBCursor(cursor);
 
         try{
-            resDBCursor.moveToFirst(); //move cursor to the first data in the database
+            cursor.moveToFirst(); //move cursor to the first data in the database
             //while not at the end of the database, loop to add the data into the array list
-            while(!resDBCursor.isAfterLast()){
+            while(!cursor.isAfterLast()){
                 resList.add(resDBCursor.getRestaurant());
-                resDBCursor.moveToNext();
+                cursor.moveToNext();
             }
         }
         finally {
