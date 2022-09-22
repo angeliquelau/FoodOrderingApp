@@ -24,4 +24,25 @@ public class ResDBCursor extends CursorWrapper {
 
         return resName;
     }
+
+    public String getFoodName()
+    {
+        String resFoodName = getString(getColumnIndex(RestaurantTable.Cols.R_FOOD));
+
+        return resFoodName;
+    }
+
+    public String getFoodDesc()
+    {
+        String resFoodDesc = getString(getColumnIndex(RestaurantTable.Cols.R_FOODDESC));
+
+        return resFoodDesc;
+    }
+
+    public int getFoodPrice()
+    {
+        int resFoodPrice = getInt(getColumnIndex(RestaurantTable.Cols.R_FOODPRICE));
+
+        return resFoodPrice;
+    }
 }

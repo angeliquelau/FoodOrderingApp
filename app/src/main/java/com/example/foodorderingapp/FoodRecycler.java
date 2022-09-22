@@ -22,12 +22,16 @@ public class FoodRecycler extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_food_recycler, container, false);
+
         Bundle bundle = this.getArguments();
-        CommonFragments data = bundle.getParcelable("frag");
+        CommonFragments data = bundle.getParcelable("CommonFragments");
+        String restaurantName = bundle.getString("RestaurantName");
         RecyclerView rv = v.findViewById(R.id.foodRecycler);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        FoodAdapter foodAdapter = new FoodAdapter(data);
+        FoodAdapter foodAdapter = new FoodAdapter(data, restaurantName);
         rv.setAdapter(foodAdapter);
+
+
         return v;
     }
 }
