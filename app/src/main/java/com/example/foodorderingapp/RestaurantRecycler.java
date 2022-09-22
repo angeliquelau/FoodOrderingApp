@@ -2,6 +2,7 @@ package com.example.foodorderingapp;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,11 +30,10 @@ public class RestaurantRecycler extends Fragment {
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         RestaurantAdapter ra = new RestaurantAdapter(data);
         rv.setAdapter(ra);
+        DividerItemDecoration div = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        rv.addItemDecoration(div);
+
         return v;
     }
-/*
-    private void storeData()
-    {
-        res_name =
-    }*/
+
 }

@@ -1,6 +1,8 @@
 package com.example.foodorderingapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +27,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     ArrayList<Integer> restaurantImages;
     ArrayList<String> restaurantName;
     ResDBModel resDBModel;
-
+    CommonFragments common;
 
     public RestaurantAdapter(CommonFragments common)
     {
+        this.common = common;
         resDBModel = common.resDBModel;
     }
 
@@ -36,10 +40,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        //inflate the xml that u wanna show on fragment
         View view = layoutInflater.inflate(R.layout.restaurant_row,parent,false);
-
-        MyViewHolder myViewHolder = new MyViewHolder(view);
+        MyViewHolder myViewHolder = new MyViewHolder(view, common);
         restaurantImages = cd.getResImg();
         restaurantName = resDBModel.getResName();
 
@@ -50,17 +52,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.resImage.setImageResource(restaurantImages.get(position));
         holder.resName.setText(restaurantName.get(position));
-/*
-        holder.foodLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                FoodRecycler foodRecycler = new FoodRecycler();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, foodRecycler);
-
-            }
-        });
-*/
 
     }
 
@@ -73,16 +64,33 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView resImage;
         TextView resName;
         ConstraintLayout foodLayout;
-        public MyViewHolder(@NonNull View itemView) {
+        CommonFragments common;
+        public MyViewHolder(@NonNull View itemView, CommonFragments common) {
             super(itemView);
             resImage = itemView.findViewById(R.id.resImage);
             resName = itemView.findViewById(R.id.resName);
             foodLayout = itemView.findViewById(R.id.foodLayout);
+            itemView.setOnClickListener(this);
+            this.common = common;
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            //Toast.makeText(view.getContext(), restaurantName.get(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("CommonFragments", common);
+            bundle.putString("RestaurantName", restaurantName.get(getAdapterPosition()));
+            AppCompatActivity activity = (AppCompatActivity) itemView.getContext();
+            FoodRecycler fr = new FoodRecycler();
+            activity.getSupportFragmentManager().beginTransaction().
+                    replace(R.id.frameLayout, fr).commit();
+            fr.setArguments(bundle);
         }
     }
 }
