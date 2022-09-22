@@ -30,11 +30,6 @@ public class ResDBModel {
         db.insert(RestaurantTable.NAME, null, cv); //add information into database
     }
 
-    /*This return method is not efficient, use a static ArrayList<String> restaurant,
-    ArrayList<String> food name would be better
-    https://www.youtube.com/watch?v=VQKq9RHMS_0&t=209s
-    */
-
     //return restaurants food
     public ArrayList<String> getResFood(String restaurant)
     {

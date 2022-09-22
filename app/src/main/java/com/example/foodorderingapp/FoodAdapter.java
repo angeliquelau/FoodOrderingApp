@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> {
 
     //that stores images
+    int quantity [];
+
     CommonData cd = new CommonData();
     ArrayList<Integer> foodImages;
     ArrayList<String> foodName;
@@ -26,6 +29,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     {
         resDBModel = common.resDBModel;
         this.restaurantName = restaurantName;
+        quantity = new int [resDBModel.getResName().size()];
+
+        for(int i = 0; i < resDBModel.getResName().size(); i++)
+        {
+            quantity[i] = 0;
+        }
     }
 
     @NonNull
@@ -87,10 +96,37 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         holder.foodImage.setImageResource(foodImages.get(position));
         holder.foodName.setText(foodName.get(position));
         holder.foodDesc.setText(foodDesc.get(position));
         holder.foodPrice.setText("RM " + String.valueOf(foodPrice.get(position)));
+
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int value = 0;
+
+                value = quantity[(holder.getAdapterPosition())];
+                value++;
+                quantity[(holder.getAdapterPosition())] =  value;
+                holder.foodQuantity.setText(String.valueOf(value));
+            }
+        });
+
+        holder.minusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int value = 0;
+
+                value = quantity[(holder.getAdapterPosition())];
+                if(value > 0) {
+                    value--;
+                    quantity[(holder.getAdapterPosition())] = value;
+                    holder.foodQuantity.setText(String.valueOf(value));
+                }
+            }
+        });
     }
 
     @Override
@@ -101,14 +137,18 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView foodImage;
-        TextView foodPrice, foodDesc, foodName;
+        TextView foodPrice, foodDesc, foodName, foodQuantity;
+        Button addButton, minusButton;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             foodName = itemView.findViewById(R.id.foodName);
             foodImage = itemView.findViewById(R.id.foodImage);
             foodPrice = itemView.findViewById(R.id.foodPrice);
+            foodQuantity = itemView.findViewById(R.id.foodQuantity);
             foodDesc = itemView.findViewById(R.id.foodDesc);
+            addButton = itemView.findViewById(R.id.addButton);
+            minusButton = itemView.findViewById(R.id.minusButton);
 
         }
     }
