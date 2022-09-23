@@ -1,22 +1,16 @@
 package com.example.foodorderingapp;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -74,7 +68,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             super(itemView);
             resImage = itemView.findViewById(R.id.resImage);
             resName = itemView.findViewById(R.id.resName);
-            foodLayout = itemView.findViewById(R.id.foodLayout);
+            foodLayout = itemView.findViewById(R.id.cartLayout);
             itemView.setOnClickListener(this);
             this.common = common;
         }

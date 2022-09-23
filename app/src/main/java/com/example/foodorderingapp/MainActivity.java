@@ -1,14 +1,12 @@
 package com.example.foodorderingapp;
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 
 import com.example.foodorderingapp.databinding.ActivityMainBinding;
 
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     LoginFragment lf = new LoginFragment();
     UserFragment uf = new UserFragment();
     OrderFragment of = new OrderFragment();
-    CartFragment cf = new CartFragment();
+    CartRecycler cf = new CartRecycler();
     RestaurantRecycler rr = new RestaurantRecycler();
     boolean login;
 
@@ -95,38 +93,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /* Image references:
-    * KFC:
-    * logo: https://en.wikipedia.org/wiki/KFC
-    * food menu: https://kfc.com.my/menu.html
-    * Mcd:
-    * logo: https://en.wikipedia.org/wiki/McDonald%27s
-    * food menu: https://www.mcdelivery.com.my/my/browse/menu.html, https://www.mcdonalds.com.my/menu,
-    *            https://www.change.org/p/mcdonald-s-malaysia-mcdonald-s-malaysia-to-bring-back-ayam-goreng-mcd-regular
-    * Pizza Hut:
-    * logo: https://www.facebook.com/pizzahutmalaysia/photos/a.433767574653/10155297967179654/
-    * food menu: https://www.pizzahut.com.my/order/pizzas
-    * Subway:
-    * logo: https://en.wikipedia.org/wiki/Subway_(restaurant)
-    * food menu: https://www.subway.com/en-MY/MenuNutrition/Menu/Sandwiches
-    * Nando's:
-    * logo: https://en.wikipedia.org/wiki/Nando%27s
-    * food menu: https://nandos.com.my/nandos-menu/?nandos_delivery=yes
-    * sushi king:
-    * logo: https://sushi-king.com/
-    * food menu: https://sushi-king.com/
-    * sugarbun:
-    * logo: http://www.sugarbun.com/
-    * food menu: http://www.sugarbun.com/menu
-    * marrybrown:
-    * logo: https://en.wikipedia.org/wiki/Marrybrown
-    * food menu: https://food.grab.com/my/en/restaurant/marrybrown-q-avenue-delivery/1-CZKFHBAZRREXCN
-    * sushi mentai:
-    * logo: https://sushi-mentai.com/EN/home
-    * food menu: https://sushi-mentai.com/EN/our-menu
-    * domino's pizza:
-    * logo: https://en.wikipedia.org/wiki/Domino%27s_Pizza
-    * food menu: https://www.dominos.com.my/pages/order/menu#!/menu/category/viewAll/
-    * */
+     * KFC:
+     * logo: https://en.wikipedia.org/wiki/KFC
+     * food menu: https://kfc.com.my/menu.html
+     * Mcd:
+     * logo: https://en.wikipedia.org/wiki/McDonald%27s
+     * food menu: https://www.mcdelivery.com.my/my/browse/menu.html, https://www.mcdonalds.com.my/menu,
+     *            https://www.change.org/p/mcdonald-s-malaysia-mcdonald-s-malaysia-to-bring-back-ayam-goreng-mcd-regular
+     * Pizza Hut:
+     * logo: https://www.facebook.com/pizzahutmalaysia/photos/a.433767574653/10155297967179654/
+     * food menu: https://www.pizzahut.com.my/order/pizzas
+     * Subway:
+     * logo: https://en.wikipedia.org/wiki/Subway_(restaurant)
+     * food menu: https://www.subway.com/en-MY/MenuNutrition/Menu/Sandwiches
+     * Nando's:
+     * logo: https://en.wikipedia.org/wiki/Nando%27s
+     * food menu: https://nandos.com.my/nandos-menu/?nandos_delivery=yes
+     * sushi king:
+     * logo: https://sushi-king.com/
+     * food menu: https://sushi-king.com/
+     * sugarbun:
+     * logo: http://www.sugarbun.com/
+     * food menu: http://www.sugarbun.com/menu
+     * marrybrown:
+     * logo: https://en.wikipedia.org/wiki/Marrybrown
+     * food menu: https://food.grab.com/my/en/restaurant/marrybrown-q-avenue-delivery/1-CZKFHBAZRREXCN
+     * sushi mentai:
+     * logo: https://sushi-mentai.com/EN/home
+     * food menu: https://sushi-mentai.com/EN/our-menu
+     * domino's pizza:
+     * logo: https://en.wikipedia.org/wiki/Domino%27s_Pizza
+     * food menu: https://www.dominos.com.my/pages/order/menu#!/menu/category/viewAll/
+     * */
 
     /*if want to get the image of the restaurant, get the image from the first data*/
     private void fillRestaurantData() {

@@ -10,12 +10,12 @@ public class CommonFragments implements Parcelable {
     LoginFragment lf;
     UserFragment uf;
     OrderFragment of;
-    CartFragment cf;
+    CartRecycler cf;
     boolean login;
     ResDBModel resDBModel;
 
     public CommonFragments(SpecialMenuFragment smf, RegisterFragment rf, LoginFragment lf, UserFragment uf,
-                           OrderFragment of, CartFragment cf, boolean login, ResDBModel resDBModel)
+                           OrderFragment of, CartRecycler cf, boolean login, ResDBModel resDBModel)
 
     {
         this.smf = smf;
@@ -49,7 +49,7 @@ public class CommonFragments implements Parcelable {
         return smf;
     }
 
-    public CartFragment getCartFragment()
+    public CartRecycler getCartFragment()
     {
         return cf;
     }
