@@ -1,6 +1,5 @@
 package com.example.foodorderingapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -61,11 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.cart:
 
-                    Log.d("MainActivity", "Value " + cf);
-                    Intent intent = new Intent(this, CartActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    intent.putExtra("bundle", bundle);
-                    startActivity(intent);
                     replaceFragment(cf);
                     cf.setArguments(bundle);
 
