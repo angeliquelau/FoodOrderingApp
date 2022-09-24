@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Angelique/Downloads/FoodOrderingApp/FoodOrderingApp/app/src/main/res/layout/activity_cart.xml" value="0.18365218000502148" />
+        <entry key="..\:/Users/Angelique/Downloads/FoodOrderingApp/FoodOrderingApp/app/src/main/res/layout/activity_main.xml" value="0.12239583333333333" />
+        <entry key="..\:/Users/Angelique/Downloads/FoodOrderingApp/FoodOrderingApp/app/src/main/res/layout/cart_row.xml" value="0.16145833333333334" />
+        <entry key="..\:/Users/Angelique/Downloads/FoodOrderingApp/FoodOrderingApp/app/src/main/res/layout/fragment_cart_recycler.xml" value="0.16145833333333334" />
+        <entry key="..\:/Users/Angelique/Downloads/FoodOrderingApp/FoodOrderingApp/app/src/main/res/layout/fragment_login.xml" value="0.12239583333333333" />
+        <entry key="..\:/Users/Angelique/Downloads/FoodOrderingApp/FoodOrderingApp/app/src/main/res/layout/fragment_register.xml" value="0.16145833333333334" />
+        <entry key="..\:/Users/Angelique/Downloads/FoodOrderingApp/FoodOrderingApp/app/src/main/res/layout/fragment_user.xml" value="0.1" />
+        <entry key="..\:/Users/Angelique/Downloads/FoodOrderingApp/FoodOrderingApp/app/src/main/res/menu/bottom_nav_bar.xml" value="0.2754782700075322" />
         <entry key="..\:/Users/Angelique/OneDrive/Documents/curtin/Y3S1/MAD/assignment/FoodOrderingApp/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.18" />
         <entry key="..\:/Users/Angelique/OneDrive/Documents/curtin/Y3S1/MAD/assignment/FoodOrderingApp/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.18" />
         <entry key="..\:/Users/Angelique/OneDrive/Documents/curtin/Y3S1/MAD/assignment/FoodOrderingApp/app/src/main/res/drawable/ic_baseline_receipt_24.xml" value="0.18" />
