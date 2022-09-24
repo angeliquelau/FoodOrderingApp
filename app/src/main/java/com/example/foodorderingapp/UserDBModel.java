@@ -49,7 +49,8 @@ public class UserDBModel {
     public String getUsername(String email)
     {
         String username = "";
-        Cursor cursor = db.rawQuery("select " + UserTable.Cols.USERNAME + " from " + UserTable.NAME + " where " + UserTable.Cols.EMAIL + " = ? ", new String[] {email});
+        Cursor cursor = db.rawQuery("select " + UserTable.Cols.USERNAME + " from " +
+                UserTable.NAME + " where " + UserTable.Cols.EMAIL + " = ? ", new String[] {email});
         UserDBCursor userDBCursor = new UserDBCursor(cursor);
         try{
             cursor.moveToFirst(); //move cursor to the first data in the database

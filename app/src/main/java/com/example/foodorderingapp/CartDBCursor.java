@@ -15,4 +15,11 @@ public class CartDBCursor extends CursorWrapper {
 
         return new Cart(username, foodName, foodPrice, quantity);
     }
+
+    public int getFoodQuantity()
+    {
+        int quantity = getInt(getColumnIndex(CartTable.Cols.C_QUANTITY));
+
+        return quantity;
+    }
 }

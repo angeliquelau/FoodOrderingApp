@@ -31,12 +31,9 @@ public class CartDBModel {
         db.update(CartTable.NAME, cv, CartTable.Cols.C_NAME + " = ? ", whereValue); //update food item that is in cart database
     }
 
-    public void deleteCartItem(Cart cart)
+    public void deleteCartItem(String foodName)
     {
-        //get the food name to be deleted
-        String[] whereValue = { String.valueOf(cart.getFoodName()) };
-        //delete from database
-        db.delete(CartTable.NAME, CartTable.Cols.C_NAME + "=?", whereValue);
+        db.delete(CartTable.NAME, CartTable.Cols.C_NAME + "=?", new String[] {foodName});
     }
 
     public ArrayList<Cart> getAllFromCart(){
@@ -56,5 +53,47 @@ public class CartDBModel {
         }
 
         return cList;
+    }
+
+    public int getFoodQuantity(String foodName) {
+        int value = 0;
+        Cursor cursor = db.rawQuery("select " + CartTable.Cols.C_QUANTITY + " from "
+                + CartTable.NAME + " where " + CartTable.Cols.C_NAME + " " +
+                "= ? ", new String[] {foodName});
+        CartDBCursor cartDBCursor = new CartDBCursor(cursor);
+
+        try{
+            cursor.moveToFirst(); //move cursor to the first data in the database
+            //while not at the end of the database, loop to add the data into the array list
+            while(!cursor.isAfterLast()){
+                value = cartDBCursor.getFoodQuantity();
+                cursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+        return value;
+    }
+
+    public boolean foodExist(String foodName)
+    {
+        boolean exist = false;
+        Cursor cursor = db.rawQuery("select * from " + CartTable.NAME + " where "
+                + CartTable.Cols.C_NAME + " " + "= ? ", new String[] {foodName});
+
+        if(cursor.getCount() > 0)
+        {
+            exist = true;
+        }
+        cursor.close();
+
+        return exist;
+    }
+
+    public void updateFoodQuantity(String foodName, int quantity) {
+        db.rawQuery("update " + CartTable.NAME + " set " + CartTable.Cols.C_QUANTITY +  "= ? " +  " where " +
+                CartTable.Cols.C_NAME + " =? " +
+                "= ? ", new String[] {String.valueOf(quantity), foodName});
     }
 }

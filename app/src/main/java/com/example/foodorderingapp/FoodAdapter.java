@@ -1,5 +1,6 @@
 package com.example.foodorderingapp;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     ResDBModel resDBModel;
     CartDBModel cartDBModel;
     String restaurantName;
+    String username;
+
     public FoodAdapter(CommonFragments common, String restaurantName)
     {
         resDBModel = common.resDBModel;
         cartDBModel = common.cartDBModel;
-
+        username = common.getUsername();
         this.restaurantName = restaurantName;
         quantity = new int [resDBModel.getResName().size()];
 
@@ -108,11 +111,31 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
             @Override
             public void onClick(View view) {
                 int value = 0;
-
                 value = quantity[(holder.getAdapterPosition())];
                 value++;
                 quantity[(holder.getAdapterPosition())] =  value;
                 holder.foodQuantity.setText(String.valueOf(value));
+
+                //food doesn't exist
+                if(!cartDBModel.foodExist(foodName.get(holder.getAdapterPosition()))) {
+
+                    Cart cart = new Cart(username, foodName.get(holder.getAdapterPosition()),
+                            foodPrice.get(holder.getAdapterPosition()), value);
+                    cartDBModel.addToCart(cart);
+                    Log.d("AddFood",  "Value = " + value);
+                }
+                else
+                {
+                    cartDBModel.updateFoodQuantity(foodName.get(holder.getAdapterPosition()), value);
+                    Log.d("AddFood",  "Value = " + value);
+                }
+                //quantity array
+
+
+
+
+
+
             }
         });
 
@@ -121,11 +144,18 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
             public void onClick(View view) {
                 int value = 0;
 
+                //quantity array
                 value = quantity[(holder.getAdapterPosition())];
+
                 if(value > 0) {
+
+                    cartDBModel.updateFoodQuantity(foodName.get(holder.getAdapterPosition()), value);
+
                     value--;
                     quantity[(holder.getAdapterPosition())] = value;
                     holder.foodQuantity.setText(String.valueOf(value));
+                    cartDBModel.updateFoodQuantity(foodName.get(holder.getAdapterPosition()), value);
+                    Log.d("AddFood",  "Value = " + value);
                 }
             }
         });
