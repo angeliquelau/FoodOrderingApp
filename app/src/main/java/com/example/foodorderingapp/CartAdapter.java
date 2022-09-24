@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
 
     CommonData cd = new CommonData();
-    ArrayList<Integer> restaurantImages;
     ArrayList<String> restaurantName;
     ResDBModel resDBModel;
     CommonFragments common;
@@ -30,10 +28,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.cart_row,parent,false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
-
+        restaurantName = resDBModel.getResName();
         return myViewHolder;
     }
 

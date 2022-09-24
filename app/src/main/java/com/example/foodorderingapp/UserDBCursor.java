@@ -13,4 +13,9 @@ public class UserDBCursor extends CursorWrapper {
         String password = getString(getColumnIndex(UserTable.Cols.PASSWORD));
         return new User(username, email, password);
     }
+
+    public String getUsername(){
+        String username = getString(getColumnIndex(UserTable.Cols.USERNAME));
+        return username;
+    }
 }

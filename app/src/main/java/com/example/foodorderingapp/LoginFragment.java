@@ -1,12 +1,7 @@
 package com.example.foodorderingapp;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 public class LoginFragment extends Fragment {
 
-    EditText username, password;
+    EditText email, password;
     Button login;
     UserDBModel userModel;
     @Override
@@ -25,7 +23,7 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
-        username = v.findViewById(R.id.username2);
+        email = v.findViewById(R.id.email2);
         password = v.findViewById(R.id.password2);
         login = v. findViewById(R.id.loginButton);
         userModel = new UserDBModel();
@@ -37,10 +35,11 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                String userInput = username.getText().toString();
+                //String userInput = username.getText().toString();
+                String emailInput = email.getText().toString();
                 String passwordInput = password.getText().toString();
 
-                if(TextUtils.isEmpty(userInput) || TextUtils.isEmpty(passwordInput))
+                if(TextUtils.isEmpty(emailInput) || TextUtils.isEmpty(passwordInput))
                 {
                     Toast.makeText(getActivity(), "Inputs cannot be blank", Toast.LENGTH_SHORT).show();
 
@@ -48,22 +47,23 @@ public class LoginFragment extends Fragment {
                 else
                 {
                     //if user not in the database
-                    if(!userModel.checkUsername(userInput))
+                    if(!userModel.checkEmail(emailInput))
                     {
                        Toast.makeText(getActivity(), "Invalid Account", Toast.LENGTH_SHORT).show();
-                       username.getText().clear();
+                       email.getText().clear();
                        password.getText().clear();
                     }
                     else //user exist
                     {
-                        username.getText().clear();
+                        email.getText().clear();
                         password.getText().clear();
 
                         //if username and password is correct
-                        if(userModel.checkUsernamePassword(userInput, passwordInput)) {
+                        if(userModel.checkEmailPassword(emailInput, passwordInput) && userModel.validateEmail(emailInput)) {
 
-                            Toast.makeText(getActivity(), "Welcome " + userInput, Toast.LENGTH_SHORT).show();
-                            bundle.putString("username", userInput);
+                            Toast.makeText(getActivity(), "Welcome " + emailInput, Toast.LENGTH_SHORT).show();
+                            bundle.putString("username", userModel.getUsername(emailInput));
+                            //bundle.putString("email", emailInput);
                             UserFragment uf = data.getUserFragment();
                             uf.setArguments(bundle);
                             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
@@ -73,7 +73,7 @@ public class LoginFragment extends Fragment {
                         }
                         else
                         {
-                            Toast.makeText(getActivity(), "Wrong password for " + userInput, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Wrong email / password for " + emailInput, Toast.LENGTH_SHORT).show();
                         }
 
                     }

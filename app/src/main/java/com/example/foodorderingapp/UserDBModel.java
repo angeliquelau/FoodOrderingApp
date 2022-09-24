@@ -9,6 +9,8 @@ import android.util.Log;
 import com.example.foodorderingapp.UserDBSchema.UserTable;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserDBModel {
     SQLiteDatabase db;
@@ -44,6 +46,25 @@ public class UserDBModel {
         return userList;
     }
 
+    public String getUsername(String email)
+    {
+        String username = "";
+        Cursor cursor = db.rawQuery("select " + UserTable.Cols.USERNAME + " from " + UserTable.NAME + " where " + UserTable.Cols.EMAIL + " = ? ", new String[] {email});
+        UserDBCursor userDBCursor = new UserDBCursor(cursor);
+        try{
+            cursor.moveToFirst(); //move cursor to the first data in the database
+            //while not at the end of the database, loop to add the data into the array list
+            while(!cursor.isAfterLast()){
+                username = userDBCursor.getUsername();
+                cursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+        return username;
+    }
+
     public boolean checkUsername (String username)
     {
         Log.i("UserDBModel", username);
@@ -61,11 +82,34 @@ public class UserDBModel {
         return exist;
     }
 
-    public boolean checkUsernamePassword (String username, String password)
+    public boolean checkEmail(String email)
+    {
+        boolean exist = false;
+        Cursor cursor = db.rawQuery("select * from " + UserTable.NAME + " where " + UserTable.Cols.EMAIL + " = ? ", new String[] {email});
+
+        if(cursor.getCount() > 0)
+        {
+            exist = true;
+        }
+
+        cursor.close();
+
+        return exist;
+    }
+
+    public boolean validateEmail(String email)
+    {
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.find();
+    }
+
+    public boolean checkEmailPassword (String username, String password)
     {
         boolean exist = false;
         Cursor cursor = db.rawQuery("select * from " + UserTable.NAME + " where " +
-                UserTable.Cols.USERNAME + " = ?" + " AND "
+                UserTable.Cols.EMAIL + " = ?" + " AND "
                 + UserTable.Cols.PASSWORD + " = ?", new String[] {username, password});
 
         if(cursor.getCount() > 0)
