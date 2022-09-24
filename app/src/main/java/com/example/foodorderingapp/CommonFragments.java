@@ -12,10 +12,14 @@ public class CommonFragments implements Parcelable {
     OrderFragment of;
     CartRecycler cf;
     boolean login;
+    String username = "";
     ResDBModel resDBModel;
+    CartDBModel cartDBModel;
+    FoodHistoryDBModel foodHistoryDBModel;
 
     public CommonFragments(SpecialMenuFragment smf, RegisterFragment rf, LoginFragment lf, UserFragment uf,
-                           OrderFragment of, CartRecycler cf, boolean login, ResDBModel resDBModel)
+                           OrderFragment of, CartRecycler cf, boolean login, ResDBModel resDBModel,
+                           CartDBModel cartDBModel, FoodHistoryDBModel foodHistoryDBModel)
 
     {
         this.smf = smf;
@@ -26,6 +30,8 @@ public class CommonFragments implements Parcelable {
         this.cf = cf;
         this.login = login;
         this.resDBModel = resDBModel;
+        this.cartDBModel = cartDBModel;
+        this.foodHistoryDBModel = foodHistoryDBModel;
     }
 
     protected CommonFragments(Parcel in) {
@@ -71,7 +77,15 @@ public class CommonFragments implements Parcelable {
 
     public OrderFragment getOrderFragment(){return of; }
 
-    public ResDBModel getResDBModel(){return resDBModel;}
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
 
     public void setLogin(boolean status)
     {

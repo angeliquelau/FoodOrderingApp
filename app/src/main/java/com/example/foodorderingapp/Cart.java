@@ -4,15 +4,13 @@ package com.example.foodorderingapp;
 
 public class Cart {
     public String username;
-    public String foodImage;
     public String foodName;
     public int foodPrice;
     public int quantity;
 
-    public Cart(String username, String foodImage, String foodName, int foodPrice, int quantity)
+    public Cart(String username, String foodName, int foodPrice, int quantity)
     {
         this.username = username;
-        this.foodImage = foodImage;
         this.foodName = foodName;
         this.foodPrice = foodPrice;
         this.quantity = quantity;
@@ -20,9 +18,6 @@ public class Cart {
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
-
-    public String getFoodImage() { return foodImage; }
-    public void setFoodImage(String foodImage) { this.foodImage = foodImage; }
 
     public String getFoodName() { return foodName; }
     public void setFoodName(String foodName) { this.foodName = foodName; }

@@ -1,10 +1,9 @@
 package com.example.foodorderingapp;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,55 +11,58 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
-
-    ArrayList<String> foodName;
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder>
+{
     ArrayList<Integer> foodPrice;
+    ArrayList<String> foodList;
+    String username;
     CommonFragments common;
-    CartDBModel cartDBModel;
+    ResDBModel resDBModel;
 
-    public CartAdapter(CommonFragments common)
+    public OrderAdapter(CommonFragments common)
     {
         this.common = common;
-        this.cartDBModel = common.cartDBModel;
+        resDBModel = common.resDBModel;
+        Log.d("OrderAdapter", "Common Class" + common);
+        //username = data.getUsername();
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.cart_row,parent,false);
+        View view = layoutInflater.inflate(R.layout.orderhistory_row,parent,false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
+
+        foodPrice = resDBModel.getResFoodPrice("KFC");
+        username = common.getUsername();
+        Log.d("OA", "username " + username);
+
 
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+       // holder.totalPrice.setText("RM" + String.valueOf(foodPrice.get(position)));
+        holder.username.setText(username);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 2;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView foodImage;
-        TextView foodPrice, foodName, foodQuantity;
-        Button addButton, minusButton, deleteButton;
+        TextView username, foodList, totalPrice;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodName = itemView.findViewById(R.id.username_order);
-            foodImage = itemView.findViewById(R.id.foodImage);
-            foodPrice = itemView.findViewById(R.id.foodPrice);
-            foodQuantity = itemView.findViewById(R.id.foodQuantity);
-            addButton = itemView.findViewById(R.id.addButton);
-            minusButton = itemView.findViewById(R.id.minusButton);
-            deleteButton = itemView.findViewById(R.id.deleteButton);
+            username = itemView.findViewById(R.id.username_order);
+            foodList = itemView.findViewById(R.id.food_order);
+            totalPrice = itemView.findViewById(R.id.foodPrice);
         }
     }
 }
+

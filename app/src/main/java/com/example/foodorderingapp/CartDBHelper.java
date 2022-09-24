@@ -14,7 +14,7 @@ public class CartDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table " + CartTable.NAME +
-                "(" + CartTable.Cols.C_USERNAME + " Text, " + CartTable.Cols.C_FOODIMAGE + " Text, " +
+                "(" + CartTable.Cols.C_USERNAME + " Text, " + " Text, " +
                 CartTable.Cols.C_NAME + " Text, " + CartTable.Cols.C_PRICE + " Text, " +
                 CartTable.Cols.C_QUANTITY + " Text);");
     }

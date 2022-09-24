@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     ResDBModel resDBModel = new ResDBModel();
+    CartDBModel cartDBModel = new CartDBModel();
+    FoodHistoryDBModel foodHistoryDBModel = new FoodHistoryDBModel();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         resDBModel.load(getApplicationContext());
+        cartDBModel.load(getApplicationContext());
+        foodHistoryDBModel.load(getApplicationContext());
         fillRestaurantData();
         Log.d("On Create: ", "see restaurant data: " + resDBModel.getAlLRestaurant());
         Log.d("see all", "Restaurant debug " + resDBModel.getResName());
-        CommonFragments data = new CommonFragments(smf, rf, lf, uf, of, cf, login, resDBModel);
+        CommonFragments data = new CommonFragments(smf, rf, lf, uf, of, cf, login, resDBModel
+        , cartDBModel, foodHistoryDBModel);
+        data.setUsername("");
         if(savedInstanceState == null) {
             replaceFragment(data.getMenuFragment());
         }
