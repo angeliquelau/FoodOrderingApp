@@ -9,11 +9,10 @@ public class CartDBCursor extends CursorWrapper {
 
     public Cart getCart(){
         String username = getString(getColumnIndex(CartTable.Cols.C_USERNAME));
-        String foodImage = getString(getColumnIndex(CartTable.Cols.C_FOODIMAGE));
         String foodName = getString(getColumnIndex(CartTable.Cols.C_NAME));
         int foodPrice = getInt(getColumnIndex(CartTable.Cols.C_PRICE));
         int quantity = getInt(getColumnIndex(CartTable.Cols.C_QUANTITY));
 
-        return new Cart(username, foodImage, foodName, foodPrice, quantity);
+        return new Cart(username, foodName, foodPrice, quantity);
     }
 }
