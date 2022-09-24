@@ -15,7 +15,6 @@ public class CartDBModel {
     public void addToCart(Cart c){
         ContentValues cv = new ContentValues();
         cv.put(CartTable.Cols.C_USERNAME, c.getUsername());
-        cv.put(CartTable.Cols.C_FOODIMAGE, c.getFoodImage());
         cv.put(CartTable.Cols.C_NAME, c.getFoodName());
         cv.put(CartTable.Cols.C_PRICE, c.getFoodPrice());
         cv.put(CartTable.Cols.C_QUANTITY, c.getQuantity());
@@ -25,7 +24,6 @@ public class CartDBModel {
     public void updateCart(Cart c){
         ContentValues cv = new ContentValues();
         cv.put(CartTable.Cols.C_USERNAME, c.getUsername());
-        cv.put(CartTable.Cols.C_FOODIMAGE, c.getFoodImage());
         cv.put(CartTable.Cols.C_NAME, c.getFoodName());
         cv.put(CartTable.Cols.C_PRICE, c.getFoodPrice());
         cv.put(CartTable.Cols.C_QUANTITY, c.getQuantity());

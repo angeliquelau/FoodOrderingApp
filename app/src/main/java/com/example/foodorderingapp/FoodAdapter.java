@@ -1,6 +1,5 @@
 package com.example.foodorderingapp;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +23,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     ArrayList<String> foodDesc;
     ArrayList<Integer> foodPrice;
     ResDBModel resDBModel;
+    CartDBModel cartDBModel;
     String restaurantName;
     public FoodAdapter(CommonFragments common, String restaurantName)
     {
         resDBModel = common.resDBModel;
+        cartDBModel = common.cartDBModel;
+
         this.restaurantName = restaurantName;
         quantity = new int [resDBModel.getResName().size()];
 
@@ -142,11 +144,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodName = itemView.findViewById(R.id.foodName);
+            foodName = itemView.findViewById(R.id.username_order);
             foodImage = itemView.findViewById(R.id.foodImage);
             foodPrice = itemView.findViewById(R.id.foodPrice);
             foodQuantity = itemView.findViewById(R.id.foodQuantity);
-            foodDesc = itemView.findViewById(R.id.foodDesc);
+            foodDesc = itemView.findViewById(R.id.food_order);
             addButton = itemView.findViewById(R.id.addButton);
             minusButton = itemView.findViewById(R.id.minusButton);
 
