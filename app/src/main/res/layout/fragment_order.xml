@@ -13,7 +13,7 @@
         android:textSize="40dp"
         android:layout_gravity="center"
         android:textStyle="bold"
-        android:text="Cart" />
+        android:text="Order History" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orderRecycler"

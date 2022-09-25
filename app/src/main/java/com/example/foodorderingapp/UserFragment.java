@@ -34,6 +34,7 @@ public class UserFragment extends Fragment {
         outputName.setText(name);
 
         CommonFragments data = bundle.getParcelable("frag");
+        CartDBModel cartDBModel = data.getCartDBModel();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,7 +42,8 @@ public class UserFragment extends Fragment {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.frameLayout, data.getRegisterFragment());
                 ft.commit();
-                data.setUsername("");
+                data.setUsername("none");
+                cartDBModel.updateUsername(name, "none");
                 data.setLogin(false);
 
             }

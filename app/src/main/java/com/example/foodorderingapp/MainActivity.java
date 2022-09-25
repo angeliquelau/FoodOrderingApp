@@ -2,6 +2,7 @@ package com.example.foodorderingapp;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("see all", "Restaurant debug " + resDBModel.getResName());
         CommonFragments data = new CommonFragments(smf, rf, lf, uf, of, cf, login, resDBModel
         , cartDBModel, foodHistoryDBModel);
-        data.setUsername("");
         if(savedInstanceState == null) {
             replaceFragment(data.getMenuFragment());
         }
@@ -67,9 +67,15 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.orderHistory:
 
-                    replaceFragment(of);
-                    of.setArguments(bundle);
-
+                    //if not login
+                    if(!data.login) {
+                        Toast.makeText(getApplicationContext(), "Not log in", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        replaceFragment(of);
+                        of.setArguments(bundle);
+                    }
                     break;
 
                 case R.id.user:
