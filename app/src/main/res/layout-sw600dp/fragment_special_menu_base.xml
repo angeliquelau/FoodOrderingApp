@@ -22,6 +22,18 @@
         app:layout_constraintVertical_bias="0.466" />
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView4"
+        android:name="com.example.foodorderingapp.SpecialMenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView3"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
         android:name="com.example.foodorderingapp.SpecialMenuFragment"
         android:layout_width="match_parent"
@@ -38,7 +50,7 @@
         android:name="com.example.foodorderingapp.SpecialMenuFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragmentContainerView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,12 +58,12 @@
 
     <TextView
         android:id="@+id/remarkText"
-        android:layout_width="358dp"
-        android:layout_height="51dp"
+        android:layout_width="482dp"
+        android:layout_height="84dp"
         android:background="#FFFFFF"
         android:text="Looks delicious? Quickly go to their menu and order!"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="30sp"
         app:circularflow_angles="2"
         app:layout_constraintBottom_toTopOf="@id/fragmentContainerView"
         app:layout_constraintEnd_toEndOf="parent"
