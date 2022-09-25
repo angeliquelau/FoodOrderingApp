@@ -3,6 +3,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registerFrag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BADEEE"
@@ -15,43 +16,60 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/signIn"
+            android:id="@+id/signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Sign In"
             android:layout_marginLeft="7dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="7dp"
             android:gravity="center"
+            android:text="Sign Up"
             android:textColor="@color/black"
-            android:textSize="50sp"
+            android:textSize="150sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/email2"
+            android:id="@+id/username"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:layout_marginStart="7dp"
             android:layout_marginTop="50dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/text_background"
+            android:hint="Username"
+            android:paddingLeft="20dp"
+            android:textColorHint="@color/chinese_silver"
+            android:textSize="45dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUp"
+            app:layout_goneMarginBottom="30dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="7dp"
             android:background="@drawable/text_background"
             android:hint="Email"
             android:paddingLeft="20dp"
             android:textColorHint="@color/chinese_silver"
-            android:textSize="25dp"
+            android:textSize="45dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signIn"
+            app:layout_constraintTop_toBottomOf="@+id/username"
             app:layout_goneMarginBottom="30dp" />
 
         <EditText
-            android:id="@+id/password2"
+            android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:layout_marginStart="7dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="7dp"
@@ -60,26 +78,40 @@
             android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:textColorHint="@color/chinese_silver"
-            android:textSize="25dp"
+            android:textSize="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email2"
+            app:layout_constraintTop_toBottomOf="@+id/email"
             app:layout_goneMarginBottom="30dp" />
 
-
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:backgroundTint="@color/light_white"
-            android:text="Login"
+            android:text="Register"
             android:textColor="@color/black"
+            android:textSize="35dp"
             android:textStyle="bold"
-            android:textSize="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password2" />
+            app:layout_constraintTop_toBottomOf="@+id/password" />
+
+        <Button
+            android:id="@+id/haveAccButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/yellow"
+            android:text="Already Have an account"
+            android:textColor="@color/black"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registerButton" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

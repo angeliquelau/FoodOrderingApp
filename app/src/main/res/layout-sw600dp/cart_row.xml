@@ -24,13 +24,13 @@
 
             <TextView
                 android:id="@+id/foodname_cart"
-                android:layout_width="210dp"
+                android:layout_width="365dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="152dp"
                 android:text="Crispy Tender Combo A"
-                android:textSize="25dp"
+                android:textSize="40dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -39,57 +39,61 @@
 
             <Button
                 android:id="@+id/addButton"
-                android:layout_width="48dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:text="+"
+                android:textSize="35dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/foodname_cart" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.36" />
 
             <Button
                 android:id="@+id/minusButton"
-                android:layout_width="48dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="52dp"
                 android:layout_marginEnd="16dp"
                 android:text="-"
+                android:textSize="35dp"
                 app:layout_constraintEnd_toStartOf="@+id/foodQuantity"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/foodPrice"
-                app:layout_constraintTop_toBottomOf="@+id/foodname_cart" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/foodQuantity"
-                android:layout_width="69dp"
-                android:layout_height="33dp"
-                android:layout_marginTop="32dp"
+                android:layout_width="77dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="56dp"
                 android:layout_marginEnd="20dp"
                 android:gravity="center"
                 android:text="0"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/addButton"
-                app:layout_constraintTop_toBottomOf="@+id/foodname_cart" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/foodPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
                 android:text="RM 0.00"
-                android:textSize="25dp"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foodname_cart" />
 
             <Button
                 android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="101dp"
+                android:layout_height="58dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="272dp"
+                android:layout_marginEnd="128dp"
                 android:text="Delete"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foodQuantity" />

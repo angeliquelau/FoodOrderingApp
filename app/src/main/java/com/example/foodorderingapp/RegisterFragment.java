@@ -53,11 +53,18 @@ public class RegisterFragment extends Fragment {
                 {
 
                     //there is not user in the database
-                    if(!userModel.checkUsername(userInput))
+                    if(!userModel.checkUsername(userInput) && userModel.validateEmail(emailInput))
                     {
                         User user = new User(userInput, emailInput, passwordInput);
                         userModel.addUser(user);
                         Toast.makeText(getActivity(), "Registered successfully", Toast.LENGTH_SHORT).show();
+                        username.getText().clear();
+                        email.getText().clear();
+                        password.getText().clear();
+                    }
+                    else if(!userModel.validateEmail(emailInput))
+                    {
+                        Toast.makeText(getActivity(), "Invalid email", Toast.LENGTH_SHORT).show();
                         username.getText().clear();
                         email.getText().clear();
                         password.getText().clear();

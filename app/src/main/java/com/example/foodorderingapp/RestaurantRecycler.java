@@ -30,8 +30,7 @@ public class RestaurantRecycler extends Fragment {
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         RestaurantAdapter ra = new RestaurantAdapter(data);
         rv.setAdapter(ra);
-        DividerItemDecoration div = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
-        rv.addItemDecoration(div);
+
 
         return v;
     }
