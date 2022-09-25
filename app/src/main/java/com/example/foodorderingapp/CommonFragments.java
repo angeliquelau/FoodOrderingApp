@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class CommonFragments implements Parcelable {
 
-    SpecialMenuFragment smf;
+    SpecialMenuBaseFragment smf;
     RegisterFragment rf;
     LoginFragment lf;
     UserFragment uf;
@@ -17,7 +17,7 @@ public class CommonFragments implements Parcelable {
     CartDBModel cartDBModel;
     FoodHistoryDBModel foodHistoryDBModel;
 
-    public CommonFragments(SpecialMenuFragment smf, RegisterFragment rf, LoginFragment lf, UserFragment uf,
+    public CommonFragments(SpecialMenuBaseFragment smf, RegisterFragment rf, LoginFragment lf, UserFragment uf,
                            OrderFragment of, CartRecycler cf, boolean login, ResDBModel resDBModel,
                            CartDBModel cartDBModel, FoodHistoryDBModel foodHistoryDBModel)
 
@@ -50,7 +50,7 @@ public class CommonFragments implements Parcelable {
         }
     };
 
-    public SpecialMenuFragment getMenuFragment()
+    public SpecialMenuBaseFragment getMenuFragment()
     {
         return smf;
     }

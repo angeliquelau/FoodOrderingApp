@@ -14,7 +14,7 @@ import com.example.foodorderingapp.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     //initialize fragments and boolean login
-    SpecialMenuFragment smf = new SpecialMenuFragment();
+    SpecialMenuBaseFragment smf = new SpecialMenuBaseFragment();
     RegisterFragment rf = new RegisterFragment();
     LoginFragment lf = new LoginFragment();
     UserFragment uf = new UserFragment();

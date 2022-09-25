@@ -99,6 +99,7 @@ public class UserDBModel {
 
     public boolean validateEmail(String email)
     {
+        //referred to: https://mailtrap.io/blog/java-email-validation/
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
