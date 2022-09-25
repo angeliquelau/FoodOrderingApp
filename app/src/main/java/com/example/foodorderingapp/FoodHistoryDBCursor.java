@@ -15,4 +15,15 @@ public class FoodHistoryDBCursor extends CursorWrapper {
         return new FoodHistory(username, foodName, foodPrice);
     }
 
+    public String getFoodList()
+    {
+        return getString(getColumnIndex(FoodHistoryTable.Cols.FH_NAME));
+    }
+
+    public int getFoodPrice()
+    {
+        return getInt(getColumnIndex(FoodHistoryTable.Cols.FH_PRICE));
+    }
+
+
 }

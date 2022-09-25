@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         fillRestaurantData();
         Log.d("On Create: ", "see restaurant data: " + resDBModel.getAlLRestaurant());
         Log.d("see all", "Restaurant debug " + resDBModel.getResName());
-        CommonFragments data = new CommonFragments(smf, rf, lf, uf, of, cf, login, resDBModel
+        CommonFragments data = new CommonFragments(smf, rr, rf, lf, uf, of, cf, login, resDBModel
         , cartDBModel, foodHistoryDBModel);
         if(savedInstanceState == null) {
             replaceFragment(data.getMenuFragment());

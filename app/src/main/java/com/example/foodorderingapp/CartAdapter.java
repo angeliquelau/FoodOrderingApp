@@ -47,8 +47,70 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         Log.d("CartAdapter", "FoodQuantity " + foodQuantity);
         holder.foodName.setText(foodName.get(position));
         holder.foodPrice.setText("RM " + String.valueOf(foodPrice.get(position)));
-        holder.foodQuantity.setText(foodQuantity);
+        holder.foodQuantity.setText(String.valueOf(foodQuantity));
 
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int value = 0;
+                String food = foodName.get(holder.getAdapterPosition());
+
+                //food doesn't exist
+                if(!cartDBModel.foodExist(food)) {
+                    value++;
+                    Cart cart = new Cart(username, food, foodPrice.get(holder.getAdapterPosition()), value);
+                    cartDBModel.addToCart(cart);
+                }
+                else //if exist
+                {
+                    //update the food quantity to database
+                    value = cartDBModel.getFoodQuantity(food, username);
+                    value++;
+                    cartDBModel.updateFoodQuantity(username, food, foodPrice.get(holder.getAdapterPosition()) ,value);
+                }
+                //change the food quantity text
+                holder.foodQuantity.setText(String.valueOf(value));
+            }
+        });
+
+        holder.minusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int value; //the exact value inside database
+                String food = foodName.get(holder.getAdapterPosition());
+
+                //if the food exist
+                if(cartDBModel.foodExist(food)) {
+
+                    value = cartDBModel.getFoodQuantity(food, username);
+                    if(value > 0) {
+                        value--;
+                        cartDBModel.updateFoodQuantity(username, food, foodPrice.get(holder.getAdapterPosition()),
+                                value);
+                        holder.foodQuantity.setText(String.valueOf(value));
+                        if(value == 0)
+                        {
+                            cartDBModel.deleteCartItem(food);
+                        }
+                    }
+                }
+            }
+        });
+
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String food = foodName.get(holder.getAdapterPosition());
+
+                if(cartDBModel.foodExist(food)) {
+
+                    holder.foodQuantity.setText("0");
+                    cartDBModel.deleteCartItem(food);
+                }
+            }
+        });
     }
 
     @Override

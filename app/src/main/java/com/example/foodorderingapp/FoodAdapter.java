@@ -1,6 +1,5 @@
 package com.example.foodorderingapp;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,7 +105,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
             @Override
             public void onClick(View view) {
                 int value = 0;
-                int newValue = 0;
                 String food = foodName.get(holder.getAdapterPosition());
 
                 //food doesn't exist
@@ -119,32 +117,34 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
                 {
                     //update the food quantity to database
                     value = cartDBModel.getFoodQuantity(food, username);
-                    newValue = value + 1;
-                    cartDBModel.updateFoodQuantity(username, food, foodPrice.get(holder.getAdapterPosition()) ,newValue);
+                    value++;
+                    cartDBModel.updateFoodQuantity(username, food, foodPrice.get(holder.getAdapterPosition()) ,value);
                 }
                 //change the food quantity text
-                holder.foodQuantity.setText(String.valueOf(newValue));
-                Log.d("FoodAdapter", "After add (food) = " + food);
-                Log.d("FoodAdapter", "After add = " + newValue);
+                holder.foodQuantity.setText(String.valueOf(value));
+
             }
         });
 
         holder.minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int dataValue; //the exact value inside database
+                int value; //the exact value inside database
                 String food = foodName.get(holder.getAdapterPosition());
 
                 //if the food exist
                 if(cartDBModel.foodExist(food)) {
 
-                    dataValue = cartDBModel.getFoodQuantity(food, username);
-                    if(dataValue > 0) {
-                        dataValue--;
+                    value = cartDBModel.getFoodQuantity(food, username);
+                    if(value > 0) {
+                        value--;
                         cartDBModel.updateFoodQuantity(username, food, foodPrice.get(holder.getAdapterPosition()),
-                                dataValue);
-                        holder.foodQuantity.setText(String.valueOf(dataValue));
-                        Log.d("FoodAdapter", "After delete = " + dataValue);
+                                value);
+                        holder.foodQuantity.setText(String.valueOf(value));
+                        if(value == 0)
+                        {
+                            cartDBModel.deleteCartItem(food);
+                        }
                     }
                 }
             }

@@ -1,6 +1,5 @@
 package com.example.foodorderingapp;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +16,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     ArrayList<String> foodList;
     String username;
     CommonFragments common;
-    ResDBModel resDBModel;
+    FoodHistoryDBModel foodHistoryDBModel;
 
     public OrderAdapter(CommonFragments common)
     {
         this.common = common;
-        resDBModel = common.resDBModel;
-        Log.d("OrderAdapter", "Common Class" + common);
-        //username = data.getUsername();
+        foodHistoryDBModel = common.getFoodHistoryDBModel();
+        username = common.getUsername();
     }
 
     @NonNull
@@ -34,23 +32,25 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         View view = layoutInflater.inflate(R.layout.orderhistory_row,parent,false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
-        foodPrice = resDBModel.getResFoodPrice("KFC");
         username = common.getUsername();
-        Log.d("OA", "username " + username);
-
+        foodList = foodHistoryDBModel.getFoodList(username);
+        foodPrice = foodHistoryDBModel.getFoodPrice(username);
 
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-       // holder.totalPrice.setText("RM" + String.valueOf(foodPrice.get(position)));
+
         holder.username.setText(username);
+        holder.foodList.setText(foodList.get(holder.getAdapterPosition()));
+        holder.totalPrice.setText("RM" + String.valueOf(foodPrice.get(position)));
+
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return foodHistoryDBModel.getFoodList(username).size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
