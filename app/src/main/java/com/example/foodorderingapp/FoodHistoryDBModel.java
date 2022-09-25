@@ -40,4 +40,50 @@ public class FoodHistoryDBModel {
 
         return fhList;
     }
+
+    public ArrayList<String> getFoodList(String username)
+    {
+        ArrayList<String> foodList = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select " + FoodHistoryTable.Cols.FH_NAME + " from "
+                + FoodHistoryTable.NAME + " where " + FoodHistoryTable.Cols.FH_USERNAME +
+                " = ? ", new String[] {username});
+        FoodHistoryDBCursor fhDBCursor = new FoodHistoryDBCursor(cursor);
+
+        try{
+            cursor.moveToFirst(); //move cursor to the first data in the database
+            //while not at the end of the database, loop to add the data into the array list
+            while(!cursor.isAfterLast()){
+                foodList.add(fhDBCursor.getFoodList());
+                cursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+
+        return foodList;
+    }
+
+    public ArrayList<Integer> getFoodPrice(String username)
+    {
+        ArrayList<Integer> foodprice = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select " + FoodHistoryTable.Cols.FH_PRICE + " from "
+                + FoodHistoryTable.NAME + " where " + FoodHistoryTable.Cols.FH_USERNAME +
+                " = ? ", new String[] {username});
+        FoodHistoryDBCursor fhDBCursor = new FoodHistoryDBCursor(cursor);
+
+        try{
+            cursor.moveToFirst(); //move cursor to the first data in the database
+            //while not at the end of the database, loop to add the data into the array list
+            while(!cursor.isAfterLast()){
+                foodprice.add(fhDBCursor.getFoodPrice());
+                cursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+
+        return foodprice;
+    }
 }

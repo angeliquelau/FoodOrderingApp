@@ -45,6 +45,11 @@ public class CartDBModel {
         db.insert(CartTable.NAME, null, cv); //add food item to cart database
     }
 
+    public void deleteCartDatabase()
+    {
+        db.execSQL("delete from " + CartTable.NAME);
+    }
+
     public void deleteCartItem(String foodName)
     {
         db.delete(CartTable.NAME, CartTable.Cols.C_NAME + "= ?", new String[] {foodName});

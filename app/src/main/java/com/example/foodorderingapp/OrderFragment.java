@@ -22,7 +22,6 @@ public class OrderFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         CommonFragments data = bundle.getParcelable("frag");
-        String restaurantName = bundle.getString("RestaurantName");
         RecyclerView rv = v.findViewById(R.id.orderRecycler);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         OrderAdapter orderAdapter = new OrderAdapter(data);
