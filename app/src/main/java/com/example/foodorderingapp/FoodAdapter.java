@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> {
 
     //that stores images
-    int quantity [];
 
     CommonData cd = new CommonData();
     ArrayList<Integer> foodImages;
@@ -34,12 +33,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
         cartDBModel = common.cartDBModel;
         username = common.getUsername();
         this.restaurantName = restaurantName;
-        quantity = new int [resDBModel.getResName().size()];
 
-        for(int i = 0; i < resDBModel.getResName().size(); i++)
-        {
-            quantity[i] = 0;
-        }
     }
 
     @NonNull
@@ -106,7 +100,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
         holder.foodName.setText(foodName.get(position));
         holder.foodDesc.setText(foodDesc.get(position));
         holder.foodPrice.setText("RM " + String.valueOf(foodPrice.get(position)));
-        holder.foodQuantity.setText(String.valueOf(cartDBModel.getFoodQuantity(foodName.get(holder.getAdapterPosition()))));
+        holder.foodQuantity.setText(String.valueOf(cartDBModel.getFoodQuantity(foodName.get(holder.getAdapterPosition()), username)));
 
         holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +118,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
                 else //if exist
                 {
                     //update the food quantity to database
-                    value = cartDBModel.getFoodQuantity(food);
+                    value = cartDBModel.getFoodQuantity(food, username);
                     newValue = value + 1;
                     cartDBModel.updateFoodQuantity(username, food, foodPrice.get(holder.getAdapterPosition()) ,newValue);
                 }
@@ -144,7 +138,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
                 //if the food exist
                 if(cartDBModel.foodExist(food)) {
 
-                    dataValue = cartDBModel.getFoodQuantity(food);
+                    dataValue = cartDBModel.getFoodQuantity(food, username);
                     if(dataValue > 0) {
                         dataValue--;
                         cartDBModel.updateFoodQuantity(username, food, foodPrice.get(holder.getAdapterPosition()),
@@ -171,7 +165,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodName = itemView.findViewById(R.id.username_order);
+            foodName = itemView.findViewById(R.id.foodname_cart);
             foodImage = itemView.findViewById(R.id.foodImage);
             foodPrice = itemView.findViewById(R.id.foodPrice);
             foodQuantity = itemView.findViewById(R.id.foodQuantity);

@@ -14,30 +14,27 @@ import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
 
-    ArrayList<String> foodName;
-    ArrayList<Integer> foodPrice;
+    ArrayList<String> foodName = new ArrayList<>();
+    ArrayList<Integer> foodPrice = new ArrayList<>();
     CartDBModel cartDBModel;
     String username;
     int foodQuantity;
+
     public CartAdapter(CommonFragments common)
     {
         cartDBModel = common.cartDBModel;
         username = common.getUsername();
-        Log.d("CA22", "Username = " + username);
-        Log.d("CartAdapter", "Class = " + cartDBModel);
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        ArrayList<Cart> cart;
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.cart_row,parent,false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
-        foodName = cartDBModel.getFoodName(username);
-        cart = cartDBModel.getAllCart();
 
+        foodName = cartDBModel.getFoodName(username);
         foodPrice = cartDBModel.getFoodPrice(username);
 
         return myViewHolder;
@@ -46,7 +43,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        foodQuantity = cartDBModel.getFoodQuantity(foodName.get(position));
+        foodQuantity = cartDBModel.getFoodQuantity(foodName.get(position), username);
+        Log.d("CartAdapter", "FoodQuantity " + foodQuantity);
         holder.foodName.setText(foodName.get(position));
         holder.foodPrice.setText("RM " + String.valueOf(foodPrice.get(position)));
         holder.foodQuantity.setText(foodQuantity);
@@ -55,7 +53,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return 10;
+        return cartDBModel.getFoodName(username).size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -65,7 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodName = itemView.findViewById(R.id.username_order);
+            foodName = itemView.findViewById(R.id.foodname_cart);
             foodPrice = itemView.findViewById(R.id.foodPrice);
             foodQuantity = itemView.findViewById(R.id.foodQuantity);
             addButton = itemView.findViewById(R.id.addButton);

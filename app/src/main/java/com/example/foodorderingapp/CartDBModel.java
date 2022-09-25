@@ -96,11 +96,11 @@ public class CartDBModel {
         return foodPrice;
     }
 
-    public int getFoodQuantity(String foodName) {
+    public int getFoodQuantity(String foodName, String username) {
         int value = 0;
         Cursor cursor = db.rawQuery("select " + CartTable.Cols.C_QUANTITY + " from "
-                + CartTable.NAME + " where " + CartTable.Cols.C_NAME  +
-                " = ? ", new String[] {foodName});
+                + CartTable.NAME + " where " + CartTable.Cols.C_NAME  + " = ? " + "AND " +
+                CartTable.Cols.C_USERNAME + " = ?", new String[] {foodName, username});
         CartDBCursor cartDBCursor = new CartDBCursor(cursor);
 
         try{
@@ -132,17 +132,6 @@ public class CartDBModel {
         return exist;
     }
 
-    /*SELECT * FROM TABLE WHERE FOOD = ? AND USERNAME = ?*/
-
-    public void updateCart(Cart c){
-        ContentValues cv = new ContentValues();
-        cv.put(CartTable.Cols.C_USERNAME, c.getUsername());
-        cv.put(CartTable.Cols.C_NAME, c.getFoodName());
-        cv.put(CartTable.Cols.C_PRICE, c.getFoodPrice());
-        cv.put(CartTable.Cols.C_QUANTITY, c.getQuantity());
-        String[] whereValue = { String.valueOf(c.getFoodName()) }; //get the name of the food that the user want to edit
-        db.update(CartTable.NAME, cv, CartTable.Cols.C_NAME + " = ? ", whereValue); //update food item that is in cart database
-    }
 
     public void updateFoodQuantity(String username, String foodName, int foodPrice, int quantity) {
         ContentValues cv = new ContentValues();
@@ -156,11 +145,7 @@ public class CartDBModel {
     }
 
     public void updateUsername(String oldUsername, String username)
-    {/*
-        db.rawQuery("update " + CartTable.NAME + " set " + CartTable.Cols.C_USERNAME +  "= ? "
-                        + " where "  + CartTable.Cols.C_USERNAME + " = ? " ,
-                new String[] {username, oldUsername});*/
-
+    {
         ContentValues cv = new ContentValues();
         cv.put(CartTable.Cols.C_USERNAME,username);
         String[] whereValue = {oldUsername};

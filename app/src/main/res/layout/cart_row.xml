@@ -23,7 +23,7 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/username_order"
+                android:id="@+id/foodname_cart"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -45,7 +45,7 @@
                 android:layout_marginEnd="20dp"
                 android:text="+"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/username_order" />
+                app:layout_constraintTop_toBottomOf="@+id/foodname_cart" />
 
             <Button
                 android:id="@+id/minusButton"
@@ -57,7 +57,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/foodQuantity"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/foodPrice"
-                app:layout_constraintTop_toBottomOf="@+id/username_order" />
+                app:layout_constraintTop_toBottomOf="@+id/foodname_cart" />
 
             <TextView
                 android:id="@+id/foodQuantity"
@@ -70,7 +70,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/addButton"
-                app:layout_constraintTop_toBottomOf="@+id/username_order" />
+                app:layout_constraintTop_toBottomOf="@+id/foodname_cart" />
 
             <TextView
                 android:id="@+id/foodPrice"
@@ -82,7 +82,7 @@
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/username_order" />
+                app:layout_constraintTop_toBottomOf="@+id/foodname_cart" />
 
             <Button
                 android:id="@+id/deleteButton"

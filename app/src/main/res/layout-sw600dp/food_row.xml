@@ -34,7 +34,7 @@
                 app:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/username_order"
+                android:id="@+id/foodname_cart"
                 android:layout_width="464dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="28dp"
@@ -60,7 +60,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.084"
                 app:layout_constraintStart_toEndOf="@+id/foodImage"
-                app:layout_constraintTop_toBottomOf="@+id/username_order"
+                app:layout_constraintTop_toBottomOf="@+id/foodname_cart"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button

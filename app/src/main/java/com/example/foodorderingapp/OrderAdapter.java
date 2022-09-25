@@ -59,7 +59,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            username = itemView.findViewById(R.id.username_order);
+            username = itemView.findViewById(R.id.foodname_cart);
             foodList = itemView.findViewById(R.id.food_order);
             totalPrice = itemView.findViewById(R.id.foodPrice);
         }
