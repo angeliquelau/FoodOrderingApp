@@ -88,6 +88,8 @@ public class CommonFragments implements Parcelable {
         return username;
     }
 
+    public CartDBModel getCartDBModel() {return cartDBModel;}
+
     public void setLogin(boolean status)
     {
         login = status;

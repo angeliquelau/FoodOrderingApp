@@ -31,11 +31,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        ArrayList<Cart> cart;
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.cart_row,parent,false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
         foodName = cartDBModel.getFoodName(username);
-        Log.d("Cart22", "Username = " + username);
+        cart = cartDBModel.getAllCart();
+
         foodPrice = cartDBModel.getFoodPrice(username);
 
         return myViewHolder;
@@ -43,6 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         foodQuantity = cartDBModel.getFoodQuantity(foodName.get(position));
         holder.foodName.setText(foodName.get(position));
         holder.foodPrice.setText("RM " + String.valueOf(foodPrice.get(position)));

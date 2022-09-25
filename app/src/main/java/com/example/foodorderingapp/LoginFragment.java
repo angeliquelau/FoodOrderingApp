@@ -29,7 +29,9 @@ public class LoginFragment extends Fragment {
         userModel = new UserDBModel();
         userModel.load(getActivity());
         Bundle bundle = this.getArguments();
-        CommonFragments data =  bundle.getParcelable("frag");;
+        CommonFragments data =  bundle.getParcelable("frag");
+
+        CartDBModel cartDBModel = data.getCartDBModel();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +64,7 @@ public class LoginFragment extends Fragment {
 
                             Toast.makeText(getActivity(), "Welcome " + emailInput, Toast.LENGTH_SHORT).show();
                             data.setUsername(userModel.getUsername(emailInput));
+                            cartDBModel.updateUsername("none", userModel.getUsername(emailInput));
                             bundle.putString("username", userModel.getUsername(emailInput));
                             UserFragment uf = data.getUserFragment();
                             uf.setArguments(bundle);
