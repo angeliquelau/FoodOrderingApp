@@ -111,22 +111,23 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
             @Override
             public void onClick(View view) {
                 int value = 0;
-                value = quantity[(holder.getAdapterPosition())];
+                int position = holder.getAdapterPosition();
+                String food = foodName.get(holder.getAdapterPosition());
+                value = quantity[position];
                 value++;
-                quantity[(holder.getAdapterPosition())] =  value;
+                quantity[position] =  value;
                 holder.foodQuantity.setText(String.valueOf(value));
 
                 //food doesn't exist
-                if(!cartDBModel.foodExist(foodName.get(holder.getAdapterPosition()))) {
+                if(!cartDBModel.foodExist(food)) {
 
-                    Cart cart = new Cart(username, foodName.get(holder.getAdapterPosition()),
-                            foodPrice.get(holder.getAdapterPosition()), value);
+                    Cart cart = new Cart(username, food, foodPrice.get(position), value);
                     cartDBModel.addToCart(cart);
                     Log.d("AddFood",  "Value = " + value);
                 }
                 else
                 {
-                    cartDBModel.updateFoodQuantity(foodName.get(holder.getAdapterPosition()), value);
+                    cartDBModel.updateFoodQuantity(food, value);
                     Log.d("AddFood",  "Value = " + value);
                 }
                 //quantity array
@@ -143,19 +144,25 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
             @Override
             public void onClick(View view) {
                 int value = 0;
-
+                String food = foodName.get(holder.getAdapterPosition());
+                int position = holder.getAdapterPosition();
                 //quantity array
-                value = quantity[(holder.getAdapterPosition())];
+                value = quantity[position];
 
                 if(value > 0) {
 
-                    cartDBModel.updateFoodQuantity(foodName.get(holder.getAdapterPosition()), value);
+                    cartDBModel.updateFoodQuantity(food, value);
 
                     value--;
-                    quantity[(holder.getAdapterPosition())] = value;
+                    quantity[position] = value;
                     holder.foodQuantity.setText(String.valueOf(value));
-                    cartDBModel.updateFoodQuantity(foodName.get(holder.getAdapterPosition()), value);
+                    cartDBModel.updateFoodQuantity(food, value);
                     Log.d("AddFood",  "Value = " + value);
+
+                    if(value == 0)
+                    {
+                        cartDBModel.deleteCartItem(food);
+                    }
                 }
             }
         });

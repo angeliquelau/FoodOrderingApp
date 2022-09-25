@@ -12,7 +12,7 @@ public class CommonFragments implements Parcelable {
     OrderFragment of;
     CartRecycler cf;
     boolean login;
-    String username = "";
+    String username;
     ResDBModel resDBModel;
     CartDBModel cartDBModel;
     FoodHistoryDBModel foodHistoryDBModel;
@@ -32,6 +32,7 @@ public class CommonFragments implements Parcelable {
         this.resDBModel = resDBModel;
         this.cartDBModel = cartDBModel;
         this.foodHistoryDBModel = foodHistoryDBModel;
+        username = "none";
     }
 
     protected CommonFragments(Parcel in) {

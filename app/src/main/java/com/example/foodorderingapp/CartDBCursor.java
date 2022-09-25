@@ -18,8 +18,19 @@ public class CartDBCursor extends CursorWrapper {
 
     public int getFoodQuantity()
     {
-        int quantity = getInt(getColumnIndex(CartTable.Cols.C_QUANTITY));
+        int foodQuantity = getInt(getColumnIndex(CartTable.Cols.C_QUANTITY));
+        return foodQuantity;
+    }
 
-        return quantity;
+    public String getFoodName()
+    {
+        String foodName = getString(getColumnIndex(CartTable.Cols.C_NAME));
+        return foodName;
+    }
+
+    public int getFoodPrice()
+    {
+        int foodPrice = getInt(getColumnIndex(CartTable.Cols.C_PRICE));
+        return foodPrice;
     }
 }
